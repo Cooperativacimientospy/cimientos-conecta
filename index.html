@@ -268,6 +268,7 @@ footer img{height:46px;width:auto}
 .cerrar svg{width:18px;height:18px}
 .h-persona{display:flex;align-items:center;gap:16px;margin-top:22px}
 .h-persona .av{width:84px;height:84px;font-size:26px;flex:none}
+button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 .h-persona .av::after{inset:-5px;border-color:rgba(255,255,255,.4)}
 .h-persona div{min-width:0;display:grid;gap:6px}
 .h-persona h2{font-size:clamp(28px,7vw,34px);font-weight:850;color:#fff}
@@ -695,7 +696,7 @@ function hojaHTML(s){
       <span class="asa" aria-hidden="true"></span>
       <button type="button" class="cerrar vidrio" data-cerrar>${I.x}Cerrar</button>
       <div class="h-persona">
-        <span class="av c0">${s.foto ? `<img src="${s.foto}" alt="">` : ini(...s.nombre.split(" "))}</span>
+        ${s.foto ? `<button type="button" class="av c0" data-foto="${s.portada || s.foto}" aria-label="Agrandar la foto de ${esc(s.nombre)}"><img src="${s.foto}" alt="Foto de ${esc(s.nombre)}"></button>` : `<span class="av c0">${ini(...s.nombre.split(" "))}</span>`}
         <div>
           <h2 id="hNombre">${esc(s.nombre)}</h2>
           ${s.fundador ? `<span class="sello">${I.estrella}Socio fundador</span>` : ""}
