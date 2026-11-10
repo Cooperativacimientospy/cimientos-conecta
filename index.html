@@ -488,6 +488,7 @@ const IMG = {
   logo_bafer:"img/studio-bafer-sb.svg",
   logo_lqyq:"img/lo-quiero-y-que.svg",
   logo_ritual:"img/ritual-ancestral-emblema.svg",
+  logo_tyt:"img/grupo-tyt.jpg",
   lq1:"img/lq-1.jpg",
   ra1:"img/ra-1.jpg",
   ra2:"img/ra-2.jpg",
@@ -550,6 +551,27 @@ const SOCIOS = [
         fotos:[IMG.lq1]
       }
     ]
+  },
+  {
+    id:"joanna-villalba", nombre:"Joanna Villalba", foto:"", portada:"",
+    fundador:true, socioN:5,
+    empresas:[
+      {
+        id:"grupo-tyt", nombre:"Grupo T&T S.A.", categoria:"Servicios profesionales", rubro:"Seguridad integral",
+        descripcion:"Somos una empresa de seguridad integral. Analizamos cada caso y diseñamos soluciones que se ajustan exactamente a lo que cada cliente necesita, ya sea para su casa, su campo o su negocio.",
+        servicios:["Vigilancia física y electrónica","Seguridad rural y contra abigeo","Instalación de cámaras CCTV","Monitoreo a distancia"],
+        foto:"", logo:IMG.logo_tyt, logoFondo:"#E20404", logoMargen:"0px",
+        whatsapp:"595971830101", telefono:"0971 830 101",
+        instagram:"grupotyts.a", tiktok:"", facebook:"https://www.facebook.com/share/1CQD6Nyjud/", web:"",
+        ubicacion:"Ver la ubicación en el mapa", mapa:"https://www.google.com/maps?q=-25.220108,-57.529387",
+        fotos:[]
+      }
+    ]
+  },
+  {
+    id:"ariel-torales", nombre:"Ariel Torales", foto:"", portada:"",
+    fundador:true, socioN:18,
+    empresas:["grupo-tyt"]
   }
 ];
 /* EMPRESAS COMPARTIDAS: si varios socios tienen la misma empresa, se carga UNA sola vez (completa, dentro de un socio)
@@ -565,11 +587,11 @@ const sociosDe = id => SOCIOS.filter(s => s.empresas.some(e => e.id === id));
    Si el socio ya está en SOCIOS se usa su foto de ahí. Sin foto, aparecen sus iniciales. */
 const FUNDADORES = [
   [1,"Carlos Fernando","Abente Yubero"],[2,"Jazmin Divina","Ferreira Ascona"],[3,"Hernan Augusto","Ortiz Martínez"],
-  [4,"Bruno Santiago","Amarilla Caballero"],[5,"Joanna Belén","Villalba López"],[6,"Johanna Tamara","Abente Yubero"],
+  [4,"Bruno Santiago","Amarilla Caballero"],[5,"Joanna Belén","Villalba López","joanna-villalba"],[6,"Johanna Tamara","Abente Yubero"],
   [7,"Mariano Enrique","Tito Abente"],[8,"Luis Enrique","Tito Techeira"],[9,"Walter Issac","Ayala Mongelos"],
   [10,"German Enmanuel","Arriola Abente"],[11,"Roberto","Ullon Báez"],[12,"Blas Rodrigo","Yubero González"],
   [13,"Milva Carolina","Brizuela González"],[14,"Gabriel","Portnoy"],[15,"Alcides Rubén","Cartaman Ruiz Díaz"],
-  [16,"Gloria Gisselle","Ortiz Olmedo"],[17,"Jhenry Maycol Alfonso","Colman Caballero"],[18,"Ariel David","Torales Aquino"],
+  [16,"Gloria Gisselle","Ortiz Olmedo"],[17,"Jhenry Maycol Alfonso","Colman Caballero"],[18,"Ariel David","Torales Aquino","ariel-torales"],
   [19,"Silvio Nicolás","Villalba Gamarra"],[20,"Oscar Tobias","Barreto Ferreira","tobias-barreto"],
   [21,"Omar Mariano","Abente Yubero"],[22,"Guadalupe","Ferreira Ascona"],[23,"Amilcar Rubén","Benítez Barriocanal"],
   [24,"Ingrid","Fischer Aponte"],[25,"Gernot Moisés","López Narváez"],[26,"Victor Alfonso Osmar","Acosta Yubero"],
