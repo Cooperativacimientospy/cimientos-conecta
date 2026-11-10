@@ -485,7 +485,9 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 
 <script>
 const IMG = {
+  german:"img/german.jpg",
   logo_abente:"img/abente-constructora.svg",
+  logo_arriola:"img/arriola-abente-iniciales.svg",
   logo_bafer:"img/studio-bafer-sb.svg",
   logo_lqyq:"img/lo-quiero-y-que.svg",
   logo_pallets:"img/pallets.jpg",
@@ -603,6 +605,22 @@ const SOCIOS = [
     empresas:["abente-constructora"]
   },
   {
+    id:"german-arriola", nombre:"German Arriola", foto:IMG.german, portada:IMG.german,
+    fundador:true, socioN:10,
+    empresas:[
+      {
+        id:"arriola-abente", nombre:"Arriola Abente Asociados", categoria:"Servicios profesionales", rubro:"Estudio jurídico",
+        descripcion:"Estudio jurídico con más de diez años de experiencia. Lleva litigios civiles y comerciales, gestiona contingencias laborales y asesora a empresas en todo su ciclo de vida: desde la constitución de sociedades y los acuerdos entre socios, hasta reorganizaciones, contratos y cumplimiento normativo.",
+        servicios:["Litigios civiles y comerciales","Derecho laboral y contingencias","Asesoramiento societario","Contratos y due diligence"],
+        foto:IMG.german, logo:IMG.logo_arriola, logoFondo:"#1B1B1B", logoMargen:"0px",
+        whatsapp:"", telefono:"",
+        instagram:"", tiktok:"", facebook:"", web:"",
+        ubicacion:"", mapa:"",
+        fotos:[IMG.german]
+      }
+    ]
+  },
+  {
     id:"johanna-abente", nombre:"Johanna Abente", foto:"", portada:"",
     fundador:true, socioN:6,
     empresas:[
@@ -644,7 +662,7 @@ const FUNDADORES = [
   [1,"Carlos Fernando","Abente Yubero","carlos-abente"],[2,"Jazmin Divina","Ferreira Ascona","jazmin-ferreira"],[3,"Hernan Augusto","Ortiz Martínez"],
   [4,"Bruno Santiago","Amarilla Caballero"],[5,"Joanna Belén","Villalba López","joanna-villalba"],[6,"Johanna Tamara","Abente Yubero","johanna-abente"],
   [7,"Mariano Enrique","Tito Abente","mariano-tito"],[8,"Luis Enrique","Tito Techeira","luis-tito"],[9,"Walter Issac","Ayala Mongelos"],
-  [10,"German Enmanuel","Arriola Abente"],[11,"Roberto","Ullon Báez"],[12,"Blas Rodrigo","Yubero González"],
+  [10,"German Enmanuel","Arriola Abente","german-arriola"],[11,"Roberto","Ullon Báez"],[12,"Blas Rodrigo","Yubero González"],
   [13,"Milva Carolina","Brizuela González"],[14,"Gabriel","Portnoy"],[15,"Alcides Rubén","Cartaman Ruiz Díaz"],
   [16,"Gloria Gisselle","Ortiz Olmedo"],[17,"Jhenry Maycol Alfonso","Colman Caballero"],[18,"Ariel David","Torales Aquino","ariel-torales"],
   [19,"Silvio Nicolás","Villalba Gamarra"],[20,"Oscar Tobias","Barreto Ferreira","tobias-barreto"],
@@ -788,7 +806,7 @@ function empresaHTML(e, activa, s){
     ${redes.length ? `<div class="e-titulo">Redes</div><div class="redes">${redes.join("")}</div>` : ""}
 
     <div class="e-titulo">Dónde</div>
-    <div class="ubic"><span class="circ">${I.pin}</span><span>${e.mapa ? `<a href="${e.mapa}" target="_blank" rel="noopener">${esc(e.ubicacion)}</a>` : esc(e.ubicacion)}</span></div>
+    ${e.ubicacion ? `<div class="ubic"><span class="circ">${I.pin}</span><span>${e.mapa ? `<a href="${e.mapa}" target="_blank" rel="noopener">${esc(e.ubicacion)}</a>` : esc(e.ubicacion)}</span></div>` : ""}
     ${otros.length ? `<div class="e-titulo">Comparte esta empresa con</div>
     <div class="co-socios">${otros.map(o => `<button type="button" class="co" data-ir="${o.id}" data-emp-ir="${e.id}"><span class="fo">${o.foto ? `<img src="${o.foto}" alt="">` : ini(...o.nombre.split(" "))}</span><span>${esc(o.nombre)}<small>Tocá para ver su ficha</small></span><span class="circ">${I.flecha}</span></button>`).join("")}</div>` : ""}
   </div>`;
