@@ -485,6 +485,14 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 
 <script>
 const IMG = {
+  ab1:"img/ab-1.jpg",
+  ab2:"img/ab-2.jpg",
+  ab3:"img/ab-3.jpg",
+  ab4:"img/ab-4.jpg",
+  ab5:"img/ab-5.jpg",
+  ab6:"img/ab-6.jpg",
+  jazmin:"img/jazmin.jpg",
+  logo_abente:"img/abente-constructora.svg",
   logo_bafer:"img/studio-bafer-sb.svg",
   logo_lqyq:"img/lo-quiero-y-que.svg",
   logo_ritual:"img/ritual-ancestral-emblema.svg",
@@ -572,6 +580,27 @@ const SOCIOS = [
     id:"ariel-torales", nombre:"Ariel Torales", foto:"", portada:"",
     fundador:true, socioN:18,
     empresas:["grupo-tyt"]
+  },
+  {
+    id:"carlos-abente", nombre:"Carlos Abente", foto:"", portada:"",
+    fundador:true, socioN:1,
+    empresas:[
+      {
+        id:"abente-constructora", nombre:"Abente Constructora E.A.S.", categoria:"Construcción e inmuebles", rubro:"Construcción y maquinaria",
+        descripcion:"Empresa paraguaya del sector de la construcción, enfocada en ofrecer soluciones para las necesidades de sus clientes, con equipos y maquinaria pesada para cada obra.",
+        servicios:["Compactación y nivelación de terreno","Demoliciones","Excavación de obra","Alquiler de maquinaria pesada","Retiro de escombro"],
+        foto:IMG.ab1, logo:IMG.logo_abente, logoFondo:"#0E1537", logoMargen:"0px", logoAncho:true,
+        whatsapp:"595971125185", telefono:"0971 125 185",
+        instagram:"abente.constructora", tiktok:"", facebook:"", web:"",
+        ubicacion:"Combatientes del Chaco N.º 361 C, Fernando de la Mora", mapa:"https://www.google.com/maps/search/?api=1&query=ABENTE+CONSTRUCTORA+Fernando+de+la+Mora+Paraguay",
+        fotos:[IMG.ab1,IMG.ab2,IMG.ab3,IMG.ab4,IMG.ab5,IMG.ab6]
+      }
+    ]
+  },
+  {
+    id:"jazmin-ferreira", nombre:"Jazmin Ferreira", foto:IMG.jazmin, portada:IMG.jazmin,
+    fundador:true, socioN:2,
+    empresas:["abente-constructora"]
   }
 ];
 /* EMPRESAS COMPARTIDAS: si varios socios tienen la misma empresa, se carga UNA sola vez (completa, dentro de un socio)
@@ -586,7 +615,7 @@ const sociosDe = id => SOCIOS.filter(s => s.empresas.some(e => e.id === id));
    La foto (5.º campo) es solo para quien manda foto pero no carga empresa: [5,"Joanna Belén","Villalba López","", y la clave de la foto entre llaves dobles, igual que las demás imágenes].
    Si el socio ya está en SOCIOS se usa su foto de ahí. Sin foto, aparecen sus iniciales. */
 const FUNDADORES = [
-  [1,"Carlos Fernando","Abente Yubero"],[2,"Jazmin Divina","Ferreira Ascona"],[3,"Hernan Augusto","Ortiz Martínez"],
+  [1,"Carlos Fernando","Abente Yubero","carlos-abente"],[2,"Jazmin Divina","Ferreira Ascona","jazmin-ferreira"],[3,"Hernan Augusto","Ortiz Martínez"],
   [4,"Bruno Santiago","Amarilla Caballero"],[5,"Joanna Belén","Villalba López","joanna-villalba"],[6,"Johanna Tamara","Abente Yubero"],
   [7,"Mariano Enrique","Tito Abente"],[8,"Luis Enrique","Tito Techeira"],[9,"Walter Issac","Ayala Mongelos"],
   [10,"German Enmanuel","Arriola Abente"],[11,"Roberto","Ullon Báez"],[12,"Blas Rodrigo","Yubero González"],
