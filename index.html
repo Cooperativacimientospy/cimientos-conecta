@@ -339,6 +339,23 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 .ubic{display:flex;gap:12px;align-items:center;font-weight:750;color:var(--texto)}
 .ubic .circ{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--impulso-xl);color:var(--impulso-d)}
 .ubic svg{width:19px;height:19px}
+/* Página "Cómo asociarte" */
+.a-cab{padding-top:74px}
+.a-cab h2{font-size:clamp(34px,9vw,44px);font-weight:850;color:#fff}
+.a-cab h2 .fino{font-weight:300}
+.a-cab p{margin-top:12px;font-size:16.5px;font-weight:500;color:#D6E4D3;max-width:30ch}
+.a-cuerpo{padding:0 16px}
+.a-video{display:block;width:auto;max-width:100%;max-height:min(66vh,560px);margin:0 auto;border-radius:22px;background:#10341D;aspect-ratio:9/16}
+.a-cuerpo .desliza{text-align:center}
+.a-pasos{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.a-pasos li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:14px;align-items:start;background:var(--blanco);border:1.5px solid var(--linea);border-radius:22px;padding:16px}
+.a-pasos b{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:20px;font-weight:900;color:#fff;background:var(--bosque)}
+.a-pasos li:nth-child(2) b{background:var(--brote);color:var(--bosque-d)}
+.a-pasos li:nth-child(3) b{background:var(--impulso)}
+.a-pasos h3{font-size:19px;font-weight:850;letter-spacing:-.02em;line-height:1.15;margin-top:2px}
+.a-pasos p{margin-top:6px;font-size:16px;color:var(--gris)}
+.a-nota{margin-top:10px;background:var(--brote-xl);color:#334D02;border-radius:22px;padding:16px 18px;font-size:16px;font-weight:550}
+.a-nota b{display:block;font-size:17px;font-weight:850;margin-bottom:4px}
 /* Otros socios de la misma empresa */
 .co-socios{display:grid;gap:8px}
 .co{display:flex;align-items:center;gap:12px;width:100%;min-height:62px;padding:6px 8px 6px 6px;border-radius:999px;border:1.5px solid var(--linea);background:var(--blanco);text-align:left;cursor:pointer;font-weight:850;font-size:15.5px;line-height:1.2;color:var(--tinta);transition:border-color .3s}
@@ -373,7 +390,7 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
     <nav aria-label="Secciones">
       <a class="nl" href="#socios">Socios</a>
       <a class="nl" href="#fundadores">Fundadores</a>
-      <a class="btn btn-bosque btn-chico" href="#sumate">Sumate<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="btn btn-bosque btn-chico" href="#asociarme" data-asociarme>Sumate<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
 </header>
@@ -436,8 +453,8 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
     <div class="wrap caja">
       <h2 id="t-sum" class="rv"><span class="fino">¿Querés ser</span><br><span class="grueso">parte de Cimientos<span class="punto">?</span></span></h2>
       <div class="lado rv" style="--d:.12s">
-        <p>Completá tu solicitud desde el celular en pocos minutos. El Consejo la revisa y te avisamos.</p>
-        <a class="btn btn-impulso" href="https://cimientos-cooperativa.pages.dev/" target="_blank" rel="noopener">Quiero ser socio<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <p>Mirá el video de cómo asociarte y completá tu solicitud desde el celular, en pocos minutos.</p>
+        <a class="btn btn-impulso" href="#asociarme" data-asociarme>Quiero ser socio<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -554,6 +571,10 @@ const FUNDADORES = [
   [33,"Carlos Fernando","Martínez Aguilar"],[34,"Miguel Augusto","Amarilla Barrios"],[35,"Richard Sebastian","Pereira González"],
   [36,"Aldo Daniel","Leguizamón Hermosa"],[37,"Carlo Adrián","Escobar Betti"]
 ];
+/* CÓMO ASOCIARSE: formulario de admisión (las solicitudes llegan al panel de la cooperativa), WhatsApp y video */
+const FORM_URL = "https://cimientos-cooperativa.coop-cimientospy.workers.dev/formulario";
+const WA_COOP = "595974635630", TEL_COOP = "0974 635 630";
+const VIDEO_ASOCIARSE = "video/como-asociarse.mp4", VIDEO_POSTER = "img/como-asociarse-poster.jpg";
 const MOSTRAR_PRONTO = true; /* tarjeta "más socios muy pronto"; poner false cuando estén todos */
 
 /* ================= ÍCONOS ================= */
@@ -731,14 +752,53 @@ function mostrar(id){
   barra(s.empresas[0]);
   if(empIr && s.empresas.some(e => e.id === empIr)) activar(empIr);
   empIr = null;
+  presentar();
+}
+function presentar(){
   velo.hidden = false; hoja.hidden = false;
   requestAnimationFrame(() => requestAnimationFrame(() => { velo.classList.add("on"); hoja.classList.add("on"); }));
   document.documentElement.style.overflow = "hidden";
   setTimeout(() => hoja.querySelector(".cerrar")?.focus({preventScroll:true}), 60);
 }
+/* Página "Cómo asociarte": video, pasos y botón al formulario de admisión */
+const esRuta = id => id === "asociarme" || !!socioPorId(id);
+function mostrarAsociarme(){
+  if(hoja.hidden) focoPrevio = document.activeElement;
+  const msj = encodeURIComponent("Hola, quiero asociarme a la Cooperativa Cimientos.");
+  hScroll.innerHTML = `
+    <div class="h-cab a-cab">
+      <span class="asa" aria-hidden="true"></span>
+      <button type="button" class="cerrar vidrio" data-cerrar>${I.x}Cerrar</button>
+      <h2 id="hNombre"><span class="fino">Cómo ser parte</span><br>de Cimientos<span class="punto">.</span></h2>
+      <p>Son pocos pasos y lo hacés todo desde el celular.</p>
+    </div>
+    <div class="a-cuerpo">
+      ${VIDEO_ASOCIARSE ? `<div class="e-titulo">Mirá el video</div>
+      <video class="a-video" controls playsinline preload="none" poster="${VIDEO_POSTER}" src="${VIDEO_ASOCIARSE}"></video>
+      <p class="desliza">Tocá el video para verlo. Dura menos de un minuto.</p>` : ""}
+      <div class="e-titulo">Los pasos</div>
+      <ol class="a-pasos">
+        <li><b>1</b><div><h3>Completá el formulario</h3><p>Lo llenás desde el celular en unos minutos. Necesitás un socio que te proponga; si no conocés a ninguno, te asignamos uno.</p></div></li>
+        <li><b>2</b><div><h3>Pagá la tasa de ingreso</h3><p>Son Gs. 150.000, una sola vez, para gastos administrativos. Después nos mandás el comprobante.</p></div></li>
+        <li><b>3</b><div><h3>El Consejo revisa tu solicitud</h3><p>Te respondemos en un plazo de 48 a 72 horas hábiles.</p></div></li>
+      </ol>
+      <div class="a-nota"><b>Después de asociarte</b>Aportás Gs. 50.000 por mes: Gs. 30.000 van a tu caja de aporte y Gs. 20.000 al Fondo de Solidaridad.</div>
+      <div class="e-titulo">¿Preferís que te guiemos?</div>
+      <div class="acciones">
+        <a class="btn btn-wa btn-full" href="https://wa.me/${WA_COOP}?text=${msj}" target="_blank" rel="noopener"><span class="lbl">${I.wa}Escribir por WhatsApp</span><span class="circ">${I.flecha}${I.flecha}</span></a>
+        <div class="numero"><div><small>WhatsApp de la cooperativa</small><strong>${TEL_COOP}</strong></div><button type="button" class="copiar" data-copiar="${TEL_COOP}">Copiar</button></div>
+      </div>
+    </div>
+    <div class="h-volver"><button type="button" class="btn btn-linea btn-full" data-cerrar>Volver<span class="circ">${I.x}</span></button></div>`;
+  hScroll.scrollTop = 0;
+  hBarra.innerHTML = `<a class="btn btn-impulso btn-full" href="${FORM_URL}" target="_blank" rel="noopener"><span class="lbl"><span>Completar el formulario<small>Solicitud de admisión · 7 pasos cortos</small></span></span><span class="circ">${I.flecha}${I.flecha}</span></a>`;
+  hBarra.hidden = false;
+  presentar();
+}
 function ocultar(){
   if(hoja.hidden) return;
   velo.classList.remove("on"); hoja.classList.remove("on");
+  hScroll.querySelector("video")?.pause();
   document.documentElement.style.overflow = "";
   setTimeout(() => { velo.hidden = true; hoja.hidden = true; }, 550);
   focoPrevio?.focus?.({preventScroll:true});
@@ -746,14 +806,15 @@ function ocultar(){
 /* El botón "atrás" del celular cierra la hoja en vez de salir de la página */
 function abrir(id){ abiertaAqui = true; location.hash = id; }
 function cerrar(){
-  if(abiertaAqui && socioPorId(location.hash.slice(1))){ abiertaAqui = false; history.back(); }
+  if(abiertaAqui && esRuta(decodeURIComponent(location.hash.slice(1)))){ abiertaAqui = false; history.back(); }
   else { history.replaceState(null, "", location.pathname + location.search); ocultar(); }
 }
 function segunHash(){
   const id = decodeURIComponent(location.hash.slice(1));
-  if(socioPorId(id)) mostrar(id); else { abiertaAqui = false; ocultar(); }
+  if(id === "asociarme") mostrarAsociarme(); else if(socioPorId(id)) mostrar(id); else { abiertaAqui = false; ocultar(); }
 }
 addEventListener("hashchange", segunHash);
+document.addEventListener("click", e => { if(e.target.closest("[data-asociarme]")) abiertaAqui = true; });
 velo.addEventListener("click", cerrar);
 addEventListener("keydown", e => { if(e.key !== "Escape") return; if(!visor.hidden) cerrarVisor(); else if(!hoja.hidden) cerrar(); });
 /* Foto ampliada: se cierra tocando en cualquier lado, con "Cerrar" o con el botón atrás */
