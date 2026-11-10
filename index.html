@@ -162,6 +162,42 @@ button{font:inherit;color:inherit}
 .chip:hover{transform:translateY(-2px);border-color:var(--bosque)}
 .chip[aria-pressed="true"]{background:var(--bosque);border-color:var(--bosque);color:#fff}
 
+/* Buscador fijo: queda arriba mientras se baja por la lista */
+.busca-fija{position:sticky;top:var(--top-h,72px);z-index:30;padding:8px 0 10px;background:var(--papel);box-shadow:0 0 0 100vmax var(--papel);clip-path:inset(0 -100vmax)}
+/* Categorías: todas a la vista, con cuántas empresas tiene cada una */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px}
+@media (min-width:700px){.cats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cat{display:flex;align-items:center;gap:10px;min-height:58px;padding:8px 12px 8px 12px;border-radius:18px;border:1.5px solid var(--linea);background:var(--blanco);text-align:left;cursor:pointer;font:inherit;color:var(--tinta);transition:background .35s var(--ease),border-color .35s,color .35s,transform .4s var(--spring)}
+.cat:hover{transform:translateY(-2px);border-color:var(--bosque)}
+.cat i{flex:none;width:12px;height:12px;border-radius:4px;background:var(--c)}
+.cat span{min-width:0}
+.cat b{display:block;font-size:14.5px;font-weight:800;line-height:1.18;letter-spacing:-.01em}
+.cat small{display:block;margin-top:2px;font-size:12.5px;font-weight:650;color:var(--gris)}
+.cat[aria-pressed="true"]{background:var(--bosque);border-color:var(--bosque);color:#fff}
+.cat[aria-pressed="true"] i{background:var(--brote-l)}
+.cat[aria-pressed="true"] small{color:rgba(255,255,255,.78)}
+/* Cantidad de resultados y botón Lista / Con fotos */
+.resumen{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 12px}
+.resumen span{font-size:15px;font-weight:800;color:var(--tinta)}
+.vista{flex:none;display:flex;padding:4px;border-radius:999px;background:var(--blanco);border:1.5px solid var(--linea)}
+.vista button{height:40px;padding:0 15px;border-radius:999px;border:0;background:none;font:inherit;font-size:14px;font-weight:800;color:var(--gris);cursor:pointer;transition:background .3s,color .3s}
+.vista button[aria-pressed="true"]{background:var(--bosque);color:#fff}
+/* Lista compacta: una fila por empresa */
+.lista{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+@media (min-width:860px){.lista{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fila{display:flex;align-items:center;gap:12px;width:100%;min-height:78px;padding:10px 10px 10px 10px;border-radius:20px;border:1.5px solid var(--linea);background:var(--blanco);text-align:left;cursor:pointer;font:inherit;color:var(--tinta);transition:border-color .3s,transform .4s var(--spring)}
+.fila:hover{border-color:var(--bosque);transform:translateY(-2px)}
+.fila .lg{flex:none;width:56px;height:56px;border-radius:15px;overflow:hidden;box-shadow:0 0 0 1.5px rgba(14,26,18,.08)}
+.fila .lg img{width:100%;height:100%;object-fit:contain}
+.fila .lg.ancho img{padding:7px!important}
+.fila .tx{flex:1;min-width:0}
+.fila b,.fila small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fila b{font-size:16px;font-weight:850;letter-spacing:-.015em;line-height:1.2}
+.fila .rb{display:block;font-size:13.5px;font-weight:750;color:var(--impulso-d);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fila small{font-size:13px;font-weight:600;color:var(--gris);margin-top:1px}
+.fila .circ{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--papel);color:var(--bosque)}
+.fila .circ svg{width:15px;height:15px}
+
 /* ---------- Tarjetas de socio (compactas) ---------- */
 .grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
 @media (max-width:600px){.grilla{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
@@ -418,7 +454,7 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
   </section>
 
   <ol class="pasos wrap" aria-label="Cómo usar esta página">
-    <li><b>1</b>Buscá un rubro</li><li><b>2</b>Tocá la tarjeta del socio</li><li><b>3</b>Escribile por WhatsApp</li>
+    <li><b>1</b>Buscá un rubro</li><li><b>2</b>Tocá la empresa</li><li><b>3</b>Escribile por WhatsApp</li>
   </ol>
 
   <div class="cinta" aria-hidden="true"><div class="pista" id="cinta"></div></div>
@@ -428,17 +464,23 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
       <div class="cabeza">
         <span class="eyebrow rv">Socios y sus empresas</span>
         <h2 id="t-soc" class="rv"><span class="fino">Lo que hacen</span><br><span class="grueso">nuestros socios<span class="punto">.</span></span></h2>
-        <p class="rv" style="--d:.1s">Cada tarjeta es un socio. Tocala y vas a ver todas sus empresas, con fotos y contacto.</p>
+        <p class="rv" style="--d:.1s">Elegí una categoría o buscá por palabra. Tocá una empresa para ver sus fotos, sus socios y cómo contactarla.</p>
       </div>
-      <div class="herramientas rv">
+      <div class="busca-fija">
         <label class="buscador">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <span hidden>Buscar socios o empresas</span>
           <input id="buscar" type="search" placeholder="Buscá un socio, empresa o servicio" autocomplete="off" enterkeyhint="search">
         </label>
-        <div class="filtros" id="filtros" role="group" aria-label="Filtrar por rubro"></div>
       </div>
-      <div class="grilla" id="grilla"></div>
+      <div class="cats rv" id="filtros" role="group" aria-label="Elegí una categoría"></div>
+      <div class="resumen">
+        <span id="cuenta" aria-live="polite"></span>
+        <div class="vista" id="vista" role="group" aria-label="Cómo ver la lista">
+          <button type="button" data-vista="lista" aria-pressed="true">Lista</button><button type="button" data-vista="fotos" aria-pressed="false">Con fotos</button>
+        </div>
+      </div>
+      <div class="lista" id="grilla"></div>
     </div>
   </section>
 
@@ -714,19 +756,45 @@ const sinMov = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ================= SOCIOS ================= */
 const grilla = document.getElementById("grilla"), filtros = document.getElementById("filtros"), buscar = document.getElementById("buscar");
-let rubro = "Todos";
+let rubro = "Todas", vista = "lista";
+const cuenta = document.getElementById("cuenta"), botonesVista = document.getElementById("vista");
 /* Orden al azar en cada visita, para que ningún socio quede siempre primero */
 // Orden de carga: el socio que se carga primero en SOCIOS aparece primero en la grilla
 const ORDEN = [...SOCIOS];
 const TEXTO = new Map(SOCIOS.map(s => [s.id, norm([s.nombre, ...s.empresas.flatMap(e => [e.nombre, e.categoria, e.rubro, e.descripcion, ...e.servicios])].join(" "))]));
+/* Lista por empresa (en orden de carga): las compartidas aparecen una sola vez */
+const LISTA_EMP = Object.values(EMPRESAS);
+const unir = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " y " + a[a.length - 1];
+const TEXTO_EMP = new Map(LISTA_EMP.map(e => [e.id, norm([e.nombre, e.categoria, e.rubro, e.descripcion, ...e.servicios, ...sociosDe(e.id).map(s => s.nombre)].join(" "))]));
+const COLORES_CAT = ["var(--bosque)", "var(--brote)", "var(--impulso)", "var(--acero)"];
 function pintarFiltros(){
-  const usadas = new Set(SOCIOS.flatMap(s => s.empresas.map(e => e.categoria)));
-  const rubros = ["Todos", ...CATEGORIAS.filter(c => usadas.has(c)), ...[...usadas].filter(c => !CATEGORIAS.includes(c))];
-  filtros.innerHTML = rubros.map(r => `<button type="button" class="chip" aria-pressed="${r === rubro}" data-r="${esc(r)}">${esc(r)}</button>`).join("");
+  const usadas = new Set(LISTA_EMP.map(e => e.categoria));
+  const rubros = ["Todas", ...CATEGORIAS.filter(c => usadas.has(c)), ...[...usadas].filter(c => !CATEGORIAS.includes(c))];
+  filtros.innerHTML = rubros.map((r, i) => {
+    const n = r === "Todas" ? LISTA_EMP.length : LISTA_EMP.filter(e => e.categoria === r).length;
+    return `<button type="button" class="cat" aria-pressed="${r === rubro}" data-r="${esc(r)}" style="--c:${COLORES_CAT[i % 4]}"><i></i><span><b>${esc(r)}</b><small>${plural(n, "empresa", "empresas")}</small></span></button>`;
+  }).join("");
 }
 function pintarSocios(){
   const palabras = norm(buscar.value).split(/\s+/).filter(Boolean), q = palabras.length;
-  const lista = ORDEN.filter(s => (rubro === "Todos" || s.empresas.some(e => e.categoria === rubro)) &&
+  const vacio = `<div class="vacio">No encontramos nada con «${esc(buscar.value)}». Probá con otra palabra o tocá «Todas».</div>`;
+  botonesVista.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.vista === vista));
+  if(vista === "lista"){
+    const emps = LISTA_EMP.filter(e => (rubro === "Todas" || e.categoria === rubro) && palabras.every(p => TEXTO_EMP.get(e.id).includes(p)));
+    cuenta.textContent = plural(emps.length, "empresa", "empresas");
+    grilla.className = "lista";
+    grilla.innerHTML = emps.length ? emps.map(e => {
+      const socios = sociosDe(e.id).map(s => s.nombre);
+      return `<button type="button" class="fila" data-emp="${e.id}" aria-label="Ver ${esc(e.nombre)}">
+        <span class="lg${claseLogo(e)}" style="background:${e.logoFondo}">${logoChico(e)}</span>
+        <span class="tx"><b>${esc(e.nombre)}</b><span class="rb">${esc(e.rubro)}</span><small>${socios.length > 1 ? "Socios" : "Socio"}: ${esc(unir(socios))}</small></span>
+        <span class="circ">${I.flecha}</span>
+      </button>`;
+    }).join("") : vacio;
+    return;
+  }
+  grilla.className = "grilla";
+  const lista = ORDEN.filter(s => (rubro === "Todas" || s.empresas.some(e => e.categoria === rubro)) &&
     palabras.every(p => TEXTO.get(s.id).includes(p)));
   let h = lista.map((s, i) => `
     <button type="button" class="socio rv" style="--d:${(i % 4) * .07}s" data-socio="${s.id}" aria-label="Ver las empresas de ${esc(s.nombre)}">
@@ -740,8 +808,9 @@ function pintarSocios(){
         <span class="s-ver">${s.empresas.length > 1 ? "Ver empresas" : "Ver empresa"}<span class="circ">${I.flecha}</span></span>
       </span>
     </button>`).join("");
-  if(!lista.length) h = `<div class="vacio">No encontramos nada con «${esc(buscar.value)}». Probá con otra palabra o tocá «Todos».</div>`;
-  else if(MOSTRAR_PRONTO && !q && rubro === "Todos") h += `
+  cuenta.textContent = plural(lista.length, "socio", "socios");
+  if(!lista.length) h = vacio;
+  else if(MOSTRAR_PRONTO && !q && rubro === "Todas") h += `
     <div class="pronto rv" style="--d:${(lista.length % 4) * .07}s" aria-hidden="true">
       <span class="mos"><i></i><i></i><i></i><i></i></span>
       <span><b>Más socios, muy pronto</b>Estamos cargando las empresas de todos.</span>
@@ -749,9 +818,16 @@ function pintarSocios(){
   grilla.innerHTML = h;
   observar(grilla.querySelectorAll(".rv"));
 }
-filtros.addEventListener("click", e => { const b = e.target.closest(".chip"); if(!b) return; rubro = b.dataset.r; pintarFiltros(); pintarSocios(); });
+filtros.addEventListener("click", e => { const b = e.target.closest(".cat"); if(!b) return; rubro = b.dataset.r; pintarFiltros(); pintarSocios(); });
+botonesVista.addEventListener("click", e => { const b = e.target.closest("[data-vista]"); if(!b || b.dataset.vista === vista) return; vista = b.dataset.vista; pintarSocios(); });
 buscar.addEventListener("input", pintarSocios);
-grilla.addEventListener("click", e => { const t = e.target.closest("[data-socio]"); if(t) abrir(t.dataset.socio); });
+grilla.addEventListener("click", e => {
+  const f = e.target.closest("[data-emp]"); if(f){ empIr = f.dataset.emp; return abrir(sociosDe(f.dataset.emp)[0].id); }
+  const t = e.target.closest("[data-socio]"); if(t) abrir(t.dataset.socio);
+});
+/* El buscador fijo se acomoda debajo del encabezado */
+const altoTop = () => document.documentElement.style.setProperty("--top-h", document.querySelector(".top").offsetHeight + "px");
+altoTop(); addEventListener("resize", altoTop);
 
 /* ================= FUNDADORES ================= */
 const listaFund = document.getElementById("listaFund");
