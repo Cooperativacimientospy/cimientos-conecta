@@ -488,6 +488,7 @@ const IMG = {
   logo_abente:"img/abente-constructora.svg",
   logo_bafer:"img/studio-bafer-sb.svg",
   logo_lqyq:"img/lo-quiero-y-que.svg",
+  logo_pallets:"img/pallets.jpg",
   logo_ritual:"img/ritual-ancestral-emblema.svg",
   logo_tyt:"img/grupo-tyt.jpg",
   lq1:"img/lq-1.jpg",
@@ -594,6 +595,32 @@ const SOCIOS = [
     id:"jazmin-ferreira", nombre:"Jazmin Ferreira", foto:"", portada:"",
     fundador:true, socioN:2,
     empresas:["abente-constructora"]
+  },
+  {
+    id:"johanna-abente", nombre:"Johanna Abente", foto:"", portada:"",
+    fundador:true, socioN:6,
+    empresas:[
+      {
+        id:"pallets", nombre:"Pallets", categoria:"Otros", rubro:"Embalajes de madera",
+        descripcion:"Empresa paraguaya especializada en la fabricación y comercialización de pallets de madera nuevos y reciclados. Ofrece soluciones de embalaje para industrias, logística y exportación, con tratamientos térmicos certificados.",
+        servicios:["Fabricación de pallets nuevos a medida","Venta de pallets reciclados","Tratamiento térmico certificado NIMF 15","Soluciones personalizadas de embalaje industrial"],
+        foto:"", logo:IMG.logo_pallets, logoFondo:"#FFFFFF", logoMargen:"0px", logoAncho:true,
+        whatsapp:"595994702054", telefono:"0994 702 054",
+        instagram:"", tiktok:"", facebook:"", web:"https://pallets.com.py/",
+        ubicacion:"Calle Puerta del Sol, Aratirí, Capiatá", mapa:"https://www.google.com/maps/search/?api=1&query=Pallets+Paraguay+Capiata",
+        fotos:[]
+      }
+    ]
+  },
+  {
+    id:"mariano-tito", nombre:"Mariano Tito", foto:"", portada:"",
+    fundador:true, socioN:7,
+    empresas:["pallets"]
+  },
+  {
+    id:"luis-tito", nombre:"Luis Tito", foto:"", portada:"",
+    fundador:true, socioN:8,
+    empresas:["pallets"]
   }
 ];
 /* EMPRESAS COMPARTIDAS: si varios socios tienen la misma empresa, se carga UNA sola vez (completa, dentro de un socio)
@@ -609,8 +636,8 @@ const sociosDe = id => SOCIOS.filter(s => s.empresas.some(e => e.id === id));
    Si el socio ya está en SOCIOS se usa su foto de ahí. Sin foto, aparecen sus iniciales. */
 const FUNDADORES = [
   [1,"Carlos Fernando","Abente Yubero","carlos-abente"],[2,"Jazmin Divina","Ferreira Ascona","jazmin-ferreira"],[3,"Hernan Augusto","Ortiz Martínez"],
-  [4,"Bruno Santiago","Amarilla Caballero"],[5,"Joanna Belén","Villalba López","joanna-villalba"],[6,"Johanna Tamara","Abente Yubero"],
-  [7,"Mariano Enrique","Tito Abente"],[8,"Luis Enrique","Tito Techeira"],[9,"Walter Issac","Ayala Mongelos"],
+  [4,"Bruno Santiago","Amarilla Caballero"],[5,"Joanna Belén","Villalba López","joanna-villalba"],[6,"Johanna Tamara","Abente Yubero","johanna-abente"],
+  [7,"Mariano Enrique","Tito Abente","mariano-tito"],[8,"Luis Enrique","Tito Techeira","luis-tito"],[9,"Walter Issac","Ayala Mongelos"],
   [10,"German Enmanuel","Arriola Abente"],[11,"Roberto","Ullon Báez"],[12,"Blas Rodrigo","Yubero González"],
   [13,"Milva Carolina","Brizuela González"],[14,"Gabriel","Portnoy"],[15,"Alcides Rubén","Cartaman Ruiz Díaz"],
   [16,"Gloria Gisselle","Ortiz Olmedo"],[17,"Jhenry Maycol Alfonso","Colman Caballero"],[18,"Ariel David","Torales Aquino","ariel-torales"],
