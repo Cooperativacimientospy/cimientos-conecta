@@ -643,8 +643,8 @@ const sinMov = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const grilla = document.getElementById("grilla"), filtros = document.getElementById("filtros"), buscar = document.getElementById("buscar");
 let rubro = "Todos";
 /* Orden al azar en cada visita, para que ningún socio quede siempre primero */
+// Orden de carga: el socio que se carga primero en SOCIOS aparece primero en la grilla
 const ORDEN = [...SOCIOS];
-for(let i = ORDEN.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [ORDEN[i], ORDEN[j]] = [ORDEN[j], ORDEN[i]]; }
 const TEXTO = new Map(SOCIOS.map(s => [s.id, norm([s.nombre, ...s.empresas.flatMap(e => [e.nombre, e.categoria, e.rubro, e.descripcion, ...e.servicios])].join(" "))]));
 function pintarFiltros(){
   const usadas = new Set(SOCIOS.flatMap(s => s.empresas.map(e => e.categoria)));
