@@ -258,12 +258,13 @@ button{font:inherit;color:inherit}
 /* Foto de perfil; si el socio no mandó foto, queda el aro con sus iniciales */
 .fund .fot{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;overflow:hidden;font-size:16px;font-weight:300;letter-spacing:.02em;color:#DCE8DA;border:1.5px solid rgba(255,255,255,.28);transition:border-color .3s,transform .5s var(--spring)}
 .fund .fot.con{border-color:var(--brote-l)}
-.fund .fot img{width:100%;height:100%;object-fit:cover}
+.fund .fot{position:relative}
+.fund .fot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .fund:hover .fot{transform:scale(1.06);border-color:var(--brote-l)}
 .fund .num{font-size:27px;font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--brote-l);font-variant-numeric:tabular-nums;transition:color .3s}
 .fund:hover .num{color:#fff}
 .av{position:relative;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-weight:850;font-size:30px;letter-spacing:-.02em;transition:transform .6s var(--spring)}
-.av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
 .av::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);transition:inset .5s var(--ease),border-color .5s}
 .av.c0{background:#2E6E43;color:#fff}.av.c1{background:var(--brote);color:var(--bosque-d)}.av.c2{background:var(--impulso);color:#fff}.av.c3{background:#F1F4EE;color:var(--bosque)}
 .fund .nom{display:block;font-weight:850;font-size:16.5px;line-height:1.25;letter-spacing:-.01em;color:#fff}
@@ -407,7 +408,8 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 .co-socios{display:grid;gap:8px}
 .co{display:flex;align-items:center;gap:12px;width:100%;min-height:62px;padding:6px 8px 6px 6px;border-radius:999px;border:1.5px solid var(--linea);background:var(--blanco);text-align:left;cursor:pointer;font-weight:850;font-size:15.5px;line-height:1.2;color:var(--tinta);transition:border-color .3s}
 .co .fo{flex:none;width:48px;height:48px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--bosque-xl);color:var(--bosque);font-weight:400;font-size:16px}
-.co .fo img{width:100%;height:100%;object-fit:cover}
+.co .fo{position:relative}
+.co .fo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .co>span:nth-child(2){flex:1;min-width:0}
 .co small{display:block;font-size:12.5px;font-weight:700;color:var(--gris);margin-top:2px}
 .co .circ{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--papel);color:var(--bosque)}
@@ -638,9 +640,9 @@ function pintarSocios(){
   let h = lista.map((s, i) => `
     <button type="button" class="socio rv" style="--d:${(i % 4) * .07}s" data-socio="${s.id}" aria-label="Ver las empresas de ${esc(s.nombre)}">
       ${s.portada ? `<img src="${s.portada}" alt="" loading="lazy">` : `<span class="s-ini" aria-hidden="true">${ini(...s.nombre.split(" "))}</span>`}
-      ${s.fundador ? `<span class="s-sello vidrio">${I.estrella}Fundador</span>` : ""}
+      ${s.fundador ? `<span class="s-sello vidrio">${I.estrella}${s.genero === "f" ? "Fundadora" : "Fundador"}</span>` : ""}
       <span class="s-pie">
-        ${s.socioN ? `<span class="s-num">Socio N.º ${String(s.socioN).padStart(4, "0")}</span>` : ""}
+        ${s.socioN ? `<span class="s-num">${s.genero === "f" ? "Socia" : "Socio"} N.º ${String(s.socioN).padStart(4, "0")}</span>` : ""}
         <h3>${esc(s.nombre)}</h3>
         <span class="s-rubro">${s.empresas.map(e => esc(e.rubro)).join(" · ")}</span>
         <span class="s-emps"><span class="logos">${s.empresas.map(e => `<span class="${claseLogo(e).trim()}" style="background:${e.logoFondo}">${logoChico(e)}</span>`).join("")}</span><small>${s.empresas.map(e => esc(e.nombre)).join(" · ")}</small></span>
@@ -737,8 +739,8 @@ function hojaHTML(s){
         ${s.foto ? `<button type="button" class="av c0" data-foto="${s.portada || s.foto}" aria-label="Agrandar la foto de ${esc(s.nombre)}"><img src="${s.foto}" alt="Foto de ${esc(s.nombre)}"></button>` : `<span class="av c0">${ini(...s.nombre.split(" "))}</span>`}
         <div>
           <h2 id="hNombre">${esc(s.nombre)}</h2>
-          ${s.fundador ? `<span class="sello">${I.estrella}Socio fundador</span>` : ""}
-          <span class="h-meta">${s.socioN ? `Socio N.º ${String(s.socioN).padStart(4, "0")} · ` : ""}${plural(n, "empresa", "empresas")}</span>
+          ${s.fundador ? `<span class="sello">${I.estrella}${s.genero === "f" ? "Socia fundadora" : "Socio fundador"}</span>` : ""}
+          <span class="h-meta">${s.socioN ? `${s.genero === "f" ? "Socia" : "Socio"} N.º ${String(s.socioN).padStart(4, "0")} · ` : ""}${plural(n, "empresa", "empresas")}</span>
         </div>
       </div>
     </div>
