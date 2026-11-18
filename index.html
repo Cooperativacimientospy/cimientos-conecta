@@ -109,7 +109,7 @@ button{font:inherit;color:inherit}
 .grafica{position:absolute;z-index:-1;right:0;top:0;bottom:0;width:min(47%,560px);pointer-events:none;animation:dibuja 1.8s var(--ease) .25s both}
 .grafica img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:right top}
 @keyframes dibuja{from{clip-path:inset(100% 0 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
-.portada .wrap{position:relative;display:grid;justify-items:start;text-align:left;gap:24px;padding-block:clamp(48px,8vw,96px) clamp(56px,8vw,96px)}
+.portada .wrap{position:relative;display:grid;justify-items:start;text-align:left;gap:24px;padding-block:clamp(40px,5.5vw,76px)}
 .portada .wrap>*{max-width:min(100%,600px)}
 .estado{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 16px 8px 12px;font-size:14.5px;font-weight:750}
 .vidrio{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);color:#fff}
@@ -121,8 +121,8 @@ button{font:inherit;color:inherit}
 .portada .lead{font-size:clamp(18px,4.4vw,21px);color:#EEF3EB;max-width:32ch;font-weight:500}
 .portada .ctas{display:flex;flex-wrap:wrap;gap:12px}
 @media (max-width:859px){
-  .portada .wrap{padding-bottom:276px}
-  .grafica{top:auto;height:290px;width:min(86%,330px)}
+  .portada .wrap{padding-block:40px 168px}
+  .grafica{top:auto;height:200px;width:min(64%,250px)}
 }
 @media (max-width:520px){.portada .ctas{width:100%}.portada .ctas .btn{width:100%;justify-content:space-between}}
 .pasos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;list-style:none;margin-block:0;padding-top:22px;padding-bottom:0;font-size:15px;font-weight:750;color:var(--texto)}
@@ -142,6 +142,12 @@ button{font:inherit;color:inherit}
 
 /* ---------- Encabezados ---------- */
 .seccion{padding-block:clamp(60px,9vw,108px) 0}
+/* Pestañas que separan "Socios y empresas" del homenaje (así no hay que scrollear todo) */
+.secciones{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;margin:22px auto 0;max-width:560px;border-radius:999px;background:var(--blanco);border:1.5px solid var(--linea);scroll-margin-top:calc(var(--top-h,72px) + 10px)}
+.secciones button{min-height:52px;padding:0 12px;border-radius:999px;border:0;background:none;font:inherit;font-size:15px;font-weight:850;line-height:1.15;color:var(--gris);cursor:pointer;transition:background .35s var(--ease),color .35s}
+.secciones button[aria-selected="true"]{background:var(--bosque);color:#fff}
+#socios{padding-top:30px}
+#fundadores{margin-top:22px}
 .cabeza{display:grid;gap:14px;margin-bottom:28px}
 .cabeza h2{font-size:clamp(38px,8.5vw,68px)}
 .cabeza h2 .grueso{color:var(--bosque)}
@@ -459,6 +465,11 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 
   <div class="cinta" aria-hidden="true"><div class="pista" id="cinta"></div></div>
 
+  <div class="wrap"><div class="secciones" id="tabsSec" role="tablist" aria-label="Secciones de la página">
+    <button type="button" role="tab" data-sec="socios" aria-selected="true" aria-controls="socios">Socios y empresas</button>
+    <button type="button" role="tab" data-sec="fundadores" aria-selected="false" aria-controls="fundadores">Homenaje a los 37</button>
+  </div></div>
+
   <section class="seccion" id="socios" aria-labelledby="t-soc">
     <div class="wrap">
       <div class="cabeza">
@@ -484,7 +495,7 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
     </div>
   </section>
 
-  <section class="homenaje" id="fundadores" aria-labelledby="t-fund">
+  <section class="homenaje" id="fundadores" aria-labelledby="t-fund" hidden>
     <div class="deco" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="wrap">
       <div class="cabeza">
@@ -872,6 +883,20 @@ const top_ = document.getElementById("top"), arriba = document.getElementById("a
 addEventListener("scroll", () => { const y = scrollY; top_.classList.toggle("con-borde", y > 10); arriba.classList.toggle("on", y > 900); }, {passive:true});
 arriba.addEventListener("click", () => scrollTo({top:0, behavior: sinMov ? "auto" : "smooth"}));
 
+/* Pestañas: se ve una sección por vez; los links #socios y #fundadores eligen la pestaña */
+const tabsSec = document.getElementById("tabsSec");
+function verSeccion(id, ir){
+  ["socios", "fundadores"].forEach(x => { document.getElementById(x).hidden = x !== id; });
+  tabsSec.querySelectorAll("[data-sec]").forEach(b => b.setAttribute("aria-selected", b.dataset.sec === id));
+  observar(document.querySelectorAll(`#${id} .rv`));
+  if(ir) requestAnimationFrame(() => tabsSec.scrollIntoView({behavior: sinMov ? "auto" : "smooth", block: "start"}));
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest('[data-sec], a[href="#socios"], a[href="#fundadores"]'); if(!a) return;
+  // Desde la portada o el menú se baja hasta las pestañas; al tocar una pestaña se queda donde está
+  e.preventDefault(); verSeccion(a.dataset.sec || a.getAttribute("href").slice(1), !a.dataset.sec);
+});
+verSeccion(location.hash === "#fundadores" ? "fundadores" : "socios", location.hash === "#fundadores" || location.hash === "#socios");
 pintarFiltros(); pintarSocios(); segunHash();
 </script>
 </body>
