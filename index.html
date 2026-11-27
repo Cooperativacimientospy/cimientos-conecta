@@ -95,36 +95,48 @@ button{font:inherit;color:inherit}
 .aviso b{color:#fff;font-weight:850}
 .aviso i{font-style:normal;color:var(--brote-l)}
 @media (max-width:560px){.aviso .lugar{display:none}}
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(244,245,241,.82);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border-bottom:1px solid transparent;transition:border-color .3s}
-.top.con-borde{border-bottom-color:var(--linea)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(16,52,29,.94);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.top.con-borde{border-bottom-color:rgba(255,255,255,.08);box-shadow:0 10px 24px -18px rgba(0,0,0,.6)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:12px}
 .top img{height:38px;width:auto}
 .top nav{display:flex;align-items:center;gap:4px}
-.top nav a.nl{font-weight:750;font-size:15px;padding:9px 14px;border-radius:999px;color:var(--texto);transition:background .3s,color .3s}
-.top nav a.nl:hover{background:var(--blanco);color:var(--bosque)}
+.top nav a.nl{display:inline-flex;align-items:center;gap:7px;font-weight:750;font-size:15px;padding:9px 14px;border-radius:999px;color:#E6EFE3;transition:background .3s,color .3s}
+.top nav a.nl svg{width:17px;height:17px}
+.top nav a.nl:hover{background:rgba(255,255,255,.12);color:#fff}
+.top .btn-sumate{background:var(--brote-l);color:var(--bosque-d)}
+.top .btn-sumate .circ{background:var(--bosque-d);color:#fff}
 @media (max-width:720px){.top nav a.nl{display:none}.top img{height:32px}}
 
 /* ---------- Portada con la línea gráfica (arcos e íconos del backpodium) ---------- */
-.portada{margin:6px max(10px,env(safe-area-inset-right,0px)) 0 max(10px,env(safe-area-inset-left,0px));border-radius:clamp(26px,4vw,40px);overflow:hidden;position:relative;isolation:isolate;background:#10341D}
-.grafica{position:absolute;z-index:-1;right:0;top:0;bottom:0;width:min(47%,560px);pointer-events:none;animation:dibuja 1.8s var(--ease) .25s both}
+.portada{margin:0;border-radius:0 0 clamp(26px,4vw,40px) clamp(26px,4vw,40px);overflow:hidden;position:relative;isolation:isolate;background:#10341D}
+.grafica{position:absolute;z-index:-1;right:0;top:0;bottom:0;width:min(40%,460px);pointer-events:none;animation:dibuja 1.8s var(--ease) .25s both}
 .grafica img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:right top}
 @keyframes dibuja{from{clip-path:inset(100% 0 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
-.portada .wrap{position:relative;display:grid;justify-items:start;text-align:left;gap:24px;padding-block:clamp(40px,5.5vw,76px)}
+.portada .wrap{position:relative;display:grid;justify-items:start;text-align:left;gap:16px;padding-block:clamp(22px,4.5vw,64px) clamp(28px,4.5vw,64px)}
 .portada .wrap>*{max-width:min(100%,600px)}
+.portada h1{font-weight:850;line-height:1;max-width:none!important;white-space:nowrap}
+.portada h1 .verde{color:var(--brote-l)}
+.datos{display:flex;align-items:center;gap:14px;font-size:15px;font-weight:750;color:#fff}
+.datos span{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.datos svg{width:22px;height:22px;color:var(--brote-l)}
+.datos i{width:1px;height:22px;background:rgba(255,255,255,.3)}
+.btn-explorar{min-height:52px;padding:6px 8px 6px 24px;background:var(--brote-l);color:var(--bosque-d);box-shadow:0 18px 34px -18px rgba(0,0,0,.6)}
+.btn-explorar .circ{width:38px;height:38px;background:var(--bosque-d);color:#fff}
+.btn-explorar:hover{background:#B5DD45}
 .estado{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 16px 8px 12px;font-size:14.5px;font-weight:750}
 .vidrio{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);color:#fff}
 .pulso{position:relative;width:10px;height:10px;border-radius:50%;background:var(--brote-l)}
 .pulso::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--brote-l);animation:pulso 2s var(--ease) infinite}
 @keyframes pulso{from{transform:scale(1);opacity:.7}to{transform:scale(3);opacity:0}}
-.portada h1{font-size:clamp(56px,14.5vw,128px);color:#fff}
-.portada h1 .grueso{color:var(--brote-l)}
-.portada .lead{font-size:clamp(18px,4.4vw,21px);color:#EEF3EB;max-width:32ch;font-weight:500}
+.portada h1{font-size:clamp(34px,9.4vw,76px);color:#fff;letter-spacing:-.035em}
+.portada .lead{font-size:clamp(16px,4.2vw,20px);line-height:1.4;color:#E6EFE3;max-width:34ch;font-weight:500}
 .portada .ctas{display:flex;flex-wrap:wrap;gap:12px}
 @media (max-width:859px){
-  .portada .wrap{padding-block:40px 168px}
-  .grafica{top:auto;height:200px;width:min(64%,250px)}
+  .grafica{width:42%;opacity:.95}
+  .grafica img{object-position:right center}
+  .portada .lead,.portada .datos{max-width:66%}
 }
-@media (max-width:520px){.portada .ctas{width:100%}.portada .ctas .btn{width:100%;justify-content:space-between}}
+@media (max-width:420px){.portada .lead{max-width:72%;font-size:15.5px}.datos{gap:10px;font-size:14px}}
 .pasos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;list-style:none;margin-block:0;padding-top:22px;padding-bottom:0;font-size:15px;font-weight:750;color:var(--texto)}
 .pasos li{display:flex;align-items:center;gap:9px}
 .pasos b{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13.5px;font-weight:900;background:var(--bosque);color:#fff}
@@ -170,6 +182,26 @@ button{font:inherit;color:inherit}
 
 /* Buscador fijo: queda arriba mientras se baja por la lista */
 .busca-fija{position:sticky;top:var(--top-h,72px);z-index:30;padding:8px 0 10px;background:var(--papel);box-shadow:0 0 0 100vmax var(--papel);clip-path:inset(0 -100vmax)}
+/* Buscador con botón "Buscar" */
+.busca-fila{display:flex;gap:8px}
+.resumen{scroll-margin-top:calc(var(--top-h,72px) + 84px)}
+.cabeza{scroll-margin-top:calc(var(--top-h,72px) + 12px)}
+.busca-fila .buscador{flex:1;min-width:0}
+.busca-fila .buscador input{border-radius:16px;height:54px}
+.b-buscar{flex:none;height:54px;padding:0 24px;border:0;border-radius:16px;background:var(--brote);color:#fff;font:inherit;font-size:16px;font-weight:850;cursor:pointer;transition:background .3s,transform .3s var(--ease)}
+.b-buscar:hover{background:#6A9800}
+.b-buscar:active{transform:scale(.97)}
+@media (max-width:420px){.b-buscar{padding:0 16px}}
+/* Categorías en píldoras con ícono; "Más" muestra el resto */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pill{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px 0 13px;border-radius:999px;border:1.5px solid var(--linea);background:var(--blanco);font:inherit;font-size:14.5px;font-weight:750;color:var(--tinta);cursor:pointer;white-space:nowrap;transition:background .3s,border-color .3s,color .3s,transform .3s var(--ease)}
+.pill svg{width:19px;height:19px;flex:none;color:var(--bosque)}
+.pill small{font-size:12.5px;font-weight:700;color:var(--tenue)}
+.pill:hover{border-color:var(--bosque);transform:translateY(-1px)}
+.pill.todas{padding:0 20px}
+.pill[aria-pressed="true"]{background:var(--brote);border-color:var(--brote);color:#fff}
+.pill[aria-pressed="true"] svg,.pill[aria-pressed="true"] small{color:#fff}
+.pill.mas svg{color:var(--brote)}
 /* Categorías: todas a la vista, con cuántas empresas tiene cada una */
 .cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px}
 @media (min-width:700px){.cats{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -395,6 +427,80 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 .galeria::-webkit-scrollbar{display:none}
 .galeria button{flex:none;max-width:88%;padding:0;border:0;background:var(--bosque-xl);border-radius:18px;overflow:hidden;cursor:zoom-in;scroll-snap-align:start}
 .galeria img{width:auto;height:auto;max-width:100%;max-height:clamp(200px,58vw,250px)}
+/* ---------- Ficha del socio (rediseño 27/11): socio | empresa | fotos en escritorio; apilado en celular ---------- */
+@media (min-width:900px){.hoja.es-socio{width:min(1080px,94vw)}.hoja.es-socio .h-barra{display:none}}
+.cerrar.claro{background:var(--blanco);border:1.5px solid var(--linea);color:var(--tinta);box-shadow:0 8px 20px -14px rgba(0,0,0,.5)}
+.cerrar.claro:hover{background:var(--papel)}
+.hs{position:relative;padding:62px 16px 0}
+.hs .asa{background:rgba(14,26,18,.22)}
+.hs-grid{display:grid;gap:18px}
+.hs-socio{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:center}
+.hs-foto{position:relative;width:96px;aspect-ratio:1;border-radius:22px;overflow:hidden;border:0;padding:0;background:var(--bosque);display:grid;place-items:center;color:#fff;font-size:30px;font-weight:850;cursor:zoom-in}
+span.hs-foto{cursor:default}
+.hs-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.hs-foto.logo img{object-fit:contain}
+.hs-dat{min-width:0;display:grid;gap:3px}
+.hs-lbl{font-size:14px;font-weight:850;color:var(--brote)}
+.hs-dat h2{font-size:clamp(24px,6.4vw,30px);font-weight:850;letter-spacing:-.025em;line-height:1.1}
+.hs-rol{font-size:14.5px;font-weight:650;color:var(--gris)}
+.hs-rol b{display:inline-flex;align-items:center;gap:5px;font-weight:800;color:#8A6410}
+.hs-rol b svg{width:12px;height:12px}
+.hs-extra{grid-column:1 / -1;display:grid;gap:12px}
+.hs-ubic{display:flex;gap:8px;align-items:flex-start;font-size:15px;font-weight:700;color:var(--texto);line-height:1.35}
+.hs-ubic svg{flex:none;width:20px;height:20px;color:var(--brote);margin-top:1px}
+.hs-ubic a{text-decoration:underline;text-decoration-color:rgba(14,26,18,.25);text-underline-offset:3px}
+.hs-redes{display:flex;flex-wrap:wrap;gap:8px}
+.hs-redes a{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px 0 10px;border-radius:999px;border:1.5px solid var(--linea);background:var(--blanco);font-size:14px;font-weight:800;color:var(--tinta);transition:border-color .3s}
+.hs-redes a:hover{border-color:var(--bosque)}
+.hs-redes svg{width:18px;height:18px;color:var(--bosque)}
+.hs-main{min-width:0}
+.hs .h-tabs{margin:0 -16px;padding:4px 16px 12px}
+.hs .h-lista{padding:0}
+.hs .emp{padding:18px 16px 20px}
+.emp-grid{display:grid;gap:18px}
+.emp-info{min-width:0}
+.e-logo.oscuro{box-shadow:none}
+.svc{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.svc li{position:relative;padding-left:20px;font-size:16px;font-weight:600;color:var(--texto);line-height:1.35}
+.svc li::before{content:"";position:absolute;left:2px;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--brote)}
+.emp-wa{display:none;margin-top:20px}
+.emp-wa .btn{min-height:56px;border-radius:16px;justify-content:center;padding:0 20px;gap:10px}
+.emp-wa .btn svg{width:22px;height:22px}
+/* Fotos: una grande y dos chicas; al tocar se ven enteras */
+.mos-f{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mos-f button{position:relative;padding:0;border:0;border-radius:16px;overflow:hidden;cursor:zoom-in;background:var(--bosque-xl);aspect-ratio:1}
+.mos-f button:first-child{grid-column:1 / -1;aspect-ratio:16/10}
+.mos-f.dos button:first-child{grid-column:auto;aspect-ratio:1}
+.mos-f img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.mos-f button:hover img{transform:scale(1.04)}
+.mos-f .mas-f{position:absolute;inset:0;display:grid;place-items:center;background:rgba(17,48,27,.62);color:#fff;font-size:19px;font-weight:850}
+.emp-mas{display:grid;gap:4px}
+.solo-esc{display:none}
+@media (min-width:900px){
+  .hs{padding:28px 28px 0}
+  .hs .cerrar{top:20px;right:20px}
+  .hs-grid{grid-template-columns:230px minmax(0,1fr);gap:28px;align-items:start}
+  .hs-socio{position:sticky;top:0;grid-template-columns:1fr;align-items:start;align-content:start;gap:14px;padding-right:26px;border-right:1.5px solid var(--linea);min-height:100%}
+  .hs-foto{width:100%;border-radius:20px}
+  .hs-dat h2{font-size:26px}
+  .hs-main{padding-top:6px}
+  .hs .h-tabs{margin:0 0 4px;padding:0 120px 12px 0}
+  .hs .emp{padding:22px}
+  .emp-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:start}
+  .emp-wa{display:block}
+  .solo-esc{display:grid}
+  .solo-cel{display:none!important}
+  .emp-mas{grid-template-columns:1fr 1fr;column-gap:22px}
+  .emp-mas>div{min-width:0}
+  .hs .e-titulo:first-child{margin-top:20px}
+  .hs-sola{padding-top:46px}
+}
+/* Visor: Anterior / Siguiente */
+.visor-nav{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;gap:10px}
+.visor-nav button{white-space:nowrap;height:46px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.14);color:#fff;font:inherit;font-size:15px;font-weight:850;cursor:pointer}
+.visor-nav span{min-width:62px;text-align:center;color:#fff;font-weight:800;font-size:14.5px}
+.visor.con-nav{padding-bottom:84px}
+
 /* Foto ampliada */
 .visor{position:fixed;inset:0;z-index:90;background:rgba(6,12,8,.94);display:grid;place-items:center;padding:72px 14px 24px;opacity:0;transition:opacity .3s var(--ease)}
 .visor.on{opacity:1}
@@ -453,11 +559,11 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
 
 <header class="top" id="top">
   <div class="wrap">
-    <a href="#inicio" aria-label="Inicio"><img src="img/logo-cimientos.svg" alt="Cooperativa Cimientos Ltda."></a>
+    <a href="#inicio" aria-label="Inicio"><img src="img/logo-icon-cimientos.svg" alt="Cooperativa Cimientos Ltda."></a>
     <nav aria-label="Secciones">
-      <a class="nl" href="#socios">Socios</a>
+      <a class="nl" href="#buscar" data-ir-buscar><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar</a>
       <a class="nl" href="#fundadores">Fundadores</a>
-      <a class="btn btn-bosque btn-chico" href="#asociarme" data-asociarme>Sumate<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="btn btn-sumate btn-chico" href="#asociarme" data-asociarme>Sumate<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
 </header>
@@ -466,22 +572,19 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
   <section class="portada" aria-label="Portada">
     <div class="grafica" aria-hidden="true"><img src="img/arcos-e-iconos.svg" alt=""></div>
     <div class="wrap">
-      <span class="estado vidrio rv" style="--d:.05s"><span class="pulso"></span><span id="estadoTxt">37 socios fundadores</span></span>
-      <h1>
-        <span class="linea"><span class="fino" style="--d:.1s">Cimientos</span></span>
-        <span class="linea"><span class="grueso" style="--d:.22s">Conecta<span class="punto">.</span></span></span>
-      </h1>
-      <p class="lead rv" style="--d:.4s">Conocé a los socios de la cooperativa, lo que hace cada uno y escribiles directo desde tu celular.</p>
-      <div class="ctas rv" style="--d:.5s">
-        <a class="btn btn-blanco" href="#socios">Ver socios y empresas<span class="circ abajo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></a>
-        <a class="btn btn-vidrio" href="#fundadores">Socios fundadores<span class="circ"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6Z"/></svg></span></a>
+      <h1><span class="linea"><span style="--d:.1s">Cimientos <span class="verde">conecta</span></span></span></h1>
+      <p class="lead rv" style="--d:.25s">Directorio de empresas y servicios de nuestra comunidad cooperativa.</p>
+      <div class="datos rv" style="--d:.32s">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14c2.3.2 4 1.6 4.5 4.2"/></svg><span id="nSocios">37 socios</span></span>
+        <i aria-hidden="true"></i>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10 5 4h14l2 6"/><path d="M3 10c0 1.4 1.3 2.5 3 2.5s3-1.1 3-2.5c0 1.4 1.3 2.5 3 2.5s3-1.1 3-2.5c0 1.4 1.3 2.5 3 2.5s3-1.1 3-2.5"/><path d="M10 20v-5h4v5"/></svg><span id="nEmpresas">empresas</span></span>
+      </div>
+      <div class="ctas rv" style="--d:.4s">
+        <a class="btn btn-explorar" href="#socios">Explorar empresas<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
     </div>
   </section>
 
-  <ol class="pasos wrap" aria-label="Cómo usar esta página">
-    <li><b>1</b>Buscá un rubro</li><li><b>2</b>Tocá la empresa</li><li><b>3</b>Escribile por WhatsApp</li>
-  </ol>
 
   <div class="cinta" aria-hidden="true"><div class="pista" id="cinta"></div></div>
 
@@ -498,13 +601,16 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
         <p class="rv" style="--d:.1s">Elegí una categoría o buscá por palabra. Tocá una empresa para ver sus fotos, sus socios y cómo contactarla.</p>
       </div>
       <div class="busca-fija">
-        <label class="buscador">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <span hidden>Buscar socios o empresas</span>
-          <input id="buscar" type="search" placeholder="Buscá un socio, empresa o servicio" autocomplete="off" enterkeyhint="search">
-        </label>
+        <form class="busca-fila" id="formBuscar" role="search">
+          <label class="buscador">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span hidden>Buscar socios o empresas</span>
+            <input id="buscar" type="search" placeholder="Buscar empresa, servicio o socio" autocomplete="off" enterkeyhint="search">
+          </label>
+          <button type="submit" class="b-buscar">Buscar</button>
+        </form>
       </div>
-      <div class="cats rv" id="filtros" role="group" aria-label="Elegí una categoría"></div>
+      <div class="pills rv" id="filtros" role="group" aria-label="Elegí una categoría"></div>
       <div class="resumen">
         <span id="cuenta" aria-live="polite"></span>
         <div class="vista" id="vista" role="group" aria-label="Cómo ver la lista">
@@ -554,7 +660,7 @@ button.av{border:0;padding:0;cursor:zoom-in;color:inherit}
   <div class="h-scroll" id="hScroll"></div>
   <div class="h-barra" id="hBarra" hidden></div>
 </div>
-<div class="visor" id="visor" hidden><img id="visorImg" alt=""><button type="button" class="cerrar vidrio" id="visorCerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>Cerrar</button></div>
+<div class="visor" id="visor" hidden><img id="visorImg" alt=""><div class="visor-nav" id="visorNav" hidden><button type="button" data-vnav="-1">‹ Anterior</button><span id="visorCuenta"></span><button type="button" data-vnav="1">Siguiente ›</button></div><button type="button" class="cerrar vidrio" id="visorCerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>Cerrar</button></div>
 
 <script>
 const IMG = {
@@ -607,7 +713,8 @@ const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
 
 /* ================= CONTADOR Y CINTA ================= */
 const totalEmp = Object.keys(EMPRESAS).length;
-document.getElementById("estadoTxt").textContent = `${FUNDADORES.length} socios fundadores · ${plural(totalEmp, "empresa", "empresas")}`;
+document.getElementById("nSocios").textContent = plural(FUNDADORES.length, "socio", "socios");
+document.getElementById("nEmpresas").textContent = plural(totalEmp, "empresa", "empresas");
 const nombresCinta = FUNDADORES.map(f => `${f[1].split(" ")[0]} ${f[2].split(" ")[0]}`);
 document.getElementById("cinta").innerHTML = [...nombresCinta, ...nombresCinta].map(n => `<span>${esc(n)}</span>`).join("");
 
@@ -626,14 +733,36 @@ const TEXTO = new Map(SOCIOS.map(s => [s.id, norm([s.nombre, ...s.empresas.flatM
 const LISTA_EMP = Object.values(EMPRESAS);
 const unir = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " y " + a[a.length - 1];
 const TEXTO_EMP = new Map(LISTA_EMP.map(e => [e.id, norm([e.nombre, e.categoria, e.rubro, e.descripcion, ...e.servicios, ...sociosDe(e.id).map(s => s.nombre)].join(" "))]));
-const COLORES_CAT = ["var(--bosque)", "var(--brote)", "var(--impulso)", "var(--acero)"];
+/* Ícono de cada categoría: se elige solo según las palabras del nombre (las categorías se crean en el panel) */
+const ic = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const ICONOS_CAT = [
+  [/constru|obra|inmueb|arquitec/, ic('<path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3"/><path d="M10 9V6h4v3"/>')],
+  [/ferreter|herramient/, ic('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5Z"/>')],
+  [/marketing|dise|publici|marca/, ic('<path d="M12 19l7-7 3 3-7 7-3-3Z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5Z"/><circle cx="11" cy="11" r="2"/>')],
+  [/tienda|producto|comercio|venta/, ic('<path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/>')],
+  [/embalaj|logist|transport|flete/, ic('<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>')],
+  [/automatiz|industr|maquin/, ic('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>')],
+  [/tecnolog|electro|inform|celular/, ic('<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>')],
+  [/residu|recicl|ambient|ecolog/, ic('<path d="M5 19c9 0 14-6 14-15-9 0-14 5-14 13v2Z"/><path d="M5 19c2-4 5-7 9-9"/>')],
+  [/agro|ganad|animal|granja|campo/, ic('<path d="M12 21V11"/><path d="M12 11c0-4 3-7 7-7 0 4-3 7-7 7ZM12 14c0-3-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5Z"/>')],
+  [/segur|vigil|protec/, ic('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m9 12 2 2 4-4"/>')],
+  [/salud|bienestar|medic|odont/, ic('<path d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.6 8.8 11 8.8 11s8.8-5.4 8.8-11Z"/>')],
+  [/gastro|comida|restaur|aliment/, ic('<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2.5 1.5-4 4-4 8h4"/>')],
+  [/profesion|consult|asesor|jur|legal|contab|servic/, ic('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>')]
+];
+const ICONO_OTRO = ic('<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>');
+const iconoCat = c => (ICONOS_CAT.find(([re]) => re.test(norm(c))) || [0, ICONO_OTRO])[1];
+const VISIBLES = 4;  /* categorías que se ven antes de tocar "Más" */
+let catsAbiertas = false;
 function pintarFiltros(){
   const usadas = new Set(LISTA_EMP.map(e => e.categoria));
-  const rubros = ["Todas", ...CATEGORIAS.filter(c => usadas.has(c)), ...[...usadas].filter(c => !CATEGORIAS.includes(c))];
-  filtros.innerHTML = rubros.map((r, i) => {
-    const n = r === "Todas" ? LISTA_EMP.length : LISTA_EMP.filter(e => e.categoria === r).length;
-    return `<button type="button" class="cat" aria-pressed="${r === rubro}" data-r="${esc(r)}" style="--c:${COLORES_CAT[i % 4]}"><i></i><span><b>${esc(r)}</b><small>${plural(n, "empresa", "empresas")}</small></span></button>`;
-  }).join("");
+  const rubros = [...CATEGORIAS.filter(c => usadas.has(c)), ...[...usadas].filter(c => !CATEGORIAS.includes(c))];
+  let ver = catsAbiertas ? rubros : rubros.slice(0, VISIBLES);
+  if(rubro !== "Todas" && !ver.includes(rubro)) ver = [...ver, rubro];
+  const resto = rubros.length - ver.length;
+  filtros.innerHTML = `<button type="button" class="pill todas" aria-pressed="${rubro === "Todas"}" data-r="Todas">Todas</button>` +
+    ver.map(r => `<button type="button" class="pill" aria-pressed="${r === rubro}" data-r="${esc(r)}" title="${plural(LISTA_EMP.filter(e => e.categoria === r).length, "empresa", "empresas")}">${iconoCat(r)}${esc(r)}</button>`).join("") +
+    (rubros.length > VISIBLES ? `<button type="button" class="pill mas" data-mas>${catsAbiertas ? ic('<path d="M5 12h14"/>') + "Menos" : ic('<path d="M12 5v14M5 12h14"/>') + `Más <small>(${resto})</small>`}</button>` : "");
 }
 function pintarSocios(){
   const palabras = norm(buscar.value).split(/\s+/).filter(Boolean), q = palabras.length;
@@ -678,7 +807,15 @@ function pintarSocios(){
   grilla.innerHTML = h;
   observar(grilla.querySelectorAll(".rv"));
 }
-filtros.addEventListener("click", e => { const b = e.target.closest(".cat"); if(!b) return; rubro = b.dataset.r; pintarFiltros(); pintarSocios(); });
+filtros.addEventListener("click", e => {
+  if(e.target.closest("[data-mas]")){ catsAbiertas = !catsAbiertas; return pintarFiltros(); }
+  const b = e.target.closest("[data-r]"); if(!b) return; rubro = b.dataset.r; pintarFiltros(); pintarSocios();
+});
+/* "Buscar": cierra el teclado y baja a los resultados */
+document.getElementById("formBuscar").addEventListener("submit", e => {
+  e.preventDefault(); buscar.blur(); pintarSocios();
+  document.querySelector(".resumen").scrollIntoView({behavior: sinMov ? "auto" : "smooth", block: "start"});
+});
 botonesVista.addEventListener("click", e => { const b = e.target.closest("[data-vista]"); if(!b || b.dataset.vista === vista) return; vista = b.dataset.vista; pintarSocios(); });
 buscar.addEventListener("input", pintarSocios);
 grilla.addEventListener("click", e => {
@@ -713,72 +850,97 @@ function barra(e){
   hBarra.innerHTML = `<a class="btn btn-wa btn-full" href="https://wa.me/${e.whatsapp}?text=${msj}" target="_blank" rel="noopener"><span class="lbl">${I.wa}<span>Escribir por WhatsApp<small>${esc(e.nombre)}</small></span></span><span class="circ">${I.flecha}${I.flecha}</span></a>`;
   hBarra.hidden = false;
 }
+function redesHTML(e, grande){
+  const r = [];
+  if(e.instagram) r.push([`https://www.instagram.com/${e.instagram}/`, I.ig, "Instagram", "@" + e.instagram]);
+  if(e.tiktok) r.push([`https://www.tiktok.com/@${e.tiktok}`, I.tt, "TikTok", "@" + e.tiktok]);
+  if(e.facebook) r.push([e.facebook, I.fb, "Facebook", "Ver página"]);
+  if(e.web) r.push([e.web, I.web, "Página web", "Visitar"]);
+  if(!r.length) return "";
+  return grande ? `<div class="redes">${r.map(([u, i, n, d]) => `<a class="red" href="${u}" target="_blank" rel="noopener"><span class="circ">${i}</span><span>${n}<small>${esc(d)}</small></span></a>`).join("")}</div>`
+    : `<div class="hs-redes">${r.map(([u, i, n]) => `<a href="${u}" target="_blank" rel="noopener">${i}${n}</a>`).join("")}</div>`;
+}
+const ubicHTML = e => e.ubicacion ? `<div class="hs-ubic">${I.pin}<span>${e.mapa ? `<a href="${e.mapa}" target="_blank" rel="noopener">${esc(e.ubicacion)}</a>` : esc(e.ubicacion)}</span></div>` : "";
+/* Datos de la empresa que van en la columna del socio (escritorio): ubicación y redes */
+const extraHTML = (e, activa) => `<div class="hs-extra solo-esc" data-extra="${e.id}" ${activa ? "" : "hidden"}>${ubicHTML(e)}${redesHTML(e, false)}</div>`;
+function fotosHTML(e){
+  const f = e.fotos, n = f.length; if(!n) return "";
+  const ver = f.slice(0, 3);
+  return `<div class="mos-f${n === 2 ? " dos" : ""}">${ver.map((x, i) => `<button type="button" data-foto="${x}" data-fotos="${e.id}" data-i="${i}" aria-label="Agrandar la foto ${i + 1} de ${esc(e.nombre)}"><img src="${x}" alt="Foto de ${esc(e.nombre)}" loading="lazy">${i === 2 && n > 3 ? `<span class="mas-f">+${plural(n - 3, "foto", "fotos")}</span>` : ""}</button>`).join("")}</div>
+    <div class="desliza">Tocá una foto para verla entera${n > 1 ? " y pasar a las demás" : ""}.</div>`;
+}
 function empresaHTML(e, activa, s){
   const otros = sociosDe(e.id).filter(o => o !== s);
-  const redes = [];
-  if(e.instagram) redes.push(`<a class="red" href="https://www.instagram.com/${e.instagram}/" target="_blank" rel="noopener"><span class="circ">${I.ig}</span><span>Instagram<small>@${esc(e.instagram)}</small></span></a>`);
-  if(e.tiktok) redes.push(`<a class="red" href="https://www.tiktok.com/@${e.tiktok}" target="_blank" rel="noopener"><span class="circ">${I.tt}</span><span>TikTok<small>@${esc(e.tiktok)}</small></span></a>`);
-  if(e.facebook) redes.push(`<a class="red" href="${e.facebook}" target="_blank" rel="noopener"><span class="circ">${I.fb}</span><span>Facebook<small>Ver página</small></span></a>`);
-  if(e.web) redes.push(`<a class="red" href="${e.web}" target="_blank" rel="noopener"><span class="circ">${I.web}</span><span>Página web<small>Visitar</small></span></a>`);
-  const galeria = e.fotos.map((f, n) => `<button type="button" data-foto="${f}" aria-label="Agrandar la foto ${n + 1} de ${esc(e.nombre)}"><img src="${f}" alt="Foto de ${esc(e.nombre)}" loading="lazy"></button>`).join("");
+  const msj = encodeURIComponent(`Hola, te encontré en Cimientos Conecta y quiero consultar sobre ${e.nombre}.`);
+  const redesCel = redesHTML(e, true);
   return `
   <div class="emp" data-emp="${e.id}" id="panel-${e.id}" role="tabpanel" ${activa ? "" : "hidden"}>
-    <div class="e-cab">
-      <span class="e-logo" style="background:${e.logoFondo}"><img src="${e.logo}" alt="Logo de ${esc(e.nombre)}" style="padding:${e.logoMargen}"></span>
-      <div><h3>${esc(e.nombre)}</h3><span class="rubro">${esc(e.rubro)}</span></div>
+    <div class="emp-grid">
+      <div class="emp-info">
+        <div class="e-cab">
+          <span class="e-logo" style="background:${e.logoFondo}"><img src="${e.logo}" alt="Logo de ${esc(e.nombre)}" style="padding:${e.logoMargen}"></span>
+          <div><h3>${esc(e.nombre)}</h3><span class="rubro">${esc(e.rubro)}</span></div>
+        </div>
+        ${e.descripcion ? `<p class="e-desc">${esc(e.descripcion)}</p>` : ""}
+        ${e.servicios.length ? `<div class="e-titulo">Servicios</div><ul class="svc">${e.servicios.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+        ${e.whatsapp ? `<div class="emp-wa"><a class="btn btn-wa btn-full" href="https://wa.me/${e.whatsapp}?text=${msj}" target="_blank" rel="noopener">${I.wa}Contactar por WhatsApp</a></div>` : ""}
+      </div>
+      ${e.fotos.length ? `<div class="emp-fotos"><div class="e-titulo solo-cel">Fotos</div>${fotosHTML(e)}</div>` : ""}
     </div>
-    <p class="e-desc">${esc(e.descripcion)}</p>
-    <ul class="etiq">${e.servicios.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-
-    ${e.fotos.length ? `<div class="e-titulo">Fotos</div>
-    <div class="galeria">${galeria}</div>
-    <div class="desliza">${e.fotos.length > 1 ? "Deslizá para ver más → " : ""}Tocá una foto para agrandarla.</div>` : ""}
-
-    ${e.telefono ? `<div class="e-titulo">Contacto</div>
-    <div class="acciones">
-      <a class="btn btn-linea btn-full" href="tel:+${e.whatsapp || e.telefono.replace(/\D/g,"")}"><span class="lbl">${I.tel}Llamar</span><span class="circ">${I.flecha}${I.flecha}</span></a>
-      <div class="numero"><div><small>Número de ${esc(e.nombre)}</small><strong>${esc(e.telefono)}</strong></div><button type="button" class="copiar" data-copiar="${esc(e.telefono)}">Copiar</button></div>
-    </div>` : ""}
-    ${redes.length ? `<div class="e-titulo">Redes</div><div class="redes">${redes.join("")}</div>` : ""}
-
-    <div class="e-titulo">Dónde</div>
-    ${e.ubicacion ? `<div class="ubic"><span class="circ">${I.pin}</span><span>${e.mapa ? `<a href="${e.mapa}" target="_blank" rel="noopener">${esc(e.ubicacion)}</a>` : esc(e.ubicacion)}</span></div>` : ""}
-    ${otros.length ? `<div class="e-titulo">Comparte esta empresa con</div>
-    <div class="co-socios">${otros.map(o => `<button type="button" class="co" data-ir="${o.id}" data-emp-ir="${e.id}"><span class="fo">${o.foto ? `<img src="${o.foto}" alt="">` : ini(...o.nombre.split(" "))}</span><span>${esc(o.nombre)}<small>Tocá para ver su ficha</small></span><span class="circ">${I.flecha}</span></button>`).join("")}</div>` : ""}
+    <div class="emp-mas">
+      ${e.telefono ? `<div><div class="e-titulo">Contacto</div>
+      <div class="acciones">
+        <a class="btn btn-linea btn-full" href="tel:+${e.whatsapp || e.telefono.replace(/\D/g,"")}"><span class="lbl">${I.tel}Llamar</span><span class="circ">${I.flecha}${I.flecha}</span></a>
+        <div class="numero"><div><small>Número de ${esc(e.nombre)}</small><strong>${esc(e.telefono)}</strong></div><button type="button" class="copiar" data-copiar="${esc(e.telefono)}">Copiar</button></div>
+      </div></div>` : ""}
+      ${redesCel ? `<div class="solo-cel"><div class="e-titulo">Redes</div>${redesCel}</div>` : ""}
+      ${e.ubicacion ? `<div class="solo-cel"><div class="e-titulo">Dónde</div>${ubicHTML(e)}</div>` : ""}
+      ${otros.length ? `<div><div class="e-titulo">Comparte esta empresa con</div>
+      <div class="co-socios">${otros.map(o => `<button type="button" class="co" data-ir="${o.id}" data-emp-ir="${e.id}"><span class="fo">${o.foto ? `<img src="${o.foto}" alt="">` : ini(...o.nombre.split(" "))}</span><span>${esc(o.nombre)}<small>Tocá para ver su ficha</small></span><span class="circ">${I.flecha}</span></button>`).join("")}</div></div>` : ""}
+    </div>
   </div>`;
 }
 function hojaHTML(s){
-  const n = s.empresas.length, sola = n === 1;
+  const n = s.empresas.length, sola = n === 1, e0 = s.empresas[0];
+  const foto = s.foto ? `<button type="button" class="hs-foto" data-foto="${s.portada || s.foto}" aria-label="Agrandar la foto de ${esc(s.nombre)}"><img src="${s.portada || s.foto}" alt="Foto de ${esc(s.nombre)}"></button>`
+    : e0 && e0.logo ? `<span class="hs-foto logo" style="background:${e0.logoFondo}">${logoChico(e0)}</span>`
+    : `<span class="hs-foto">${ini(...s.nombre.split(" "))}</span>`;
+  const f = s.genero === "f";
   return `
-    <div class="h-cab">
-      <div class="fondo" aria-hidden="true"><img src="${s.empresas[0].foto}" alt=""></div>
-      <span class="asa" aria-hidden="true"></span>
-      <button type="button" class="cerrar vidrio" data-cerrar>${I.x}Cerrar</button>
-      <div class="h-persona">
-        ${s.foto ? `<button type="button" class="av c0" data-foto="${s.portada || s.foto}" aria-label="Agrandar la foto de ${esc(s.nombre)}"><img src="${s.foto}" alt="Foto de ${esc(s.nombre)}"></button>` : s.empresas[0] && s.empresas[0].logo ? `<span class="av c0 logo" style="background:${s.empresas[0].logoFondo}">${logoChico(s.empresas[0])}</span>` : `<span class="av c0">${ini(...s.nombre.split(" "))}</span>`}
-        <div>
+  <div class="hs">
+    <span class="asa" aria-hidden="true"></span>
+    <button type="button" class="cerrar claro" data-cerrar>${I.x}Cerrar</button>
+    <div class="hs-grid">
+      <aside class="hs-socio">
+        ${foto}
+        <div class="hs-dat">
+          <span class="hs-lbl">${f ? "Socia" : "Socio"}${s.socioN ? ` N.º ${String(s.socioN).padStart(4, "0")}` : ""}</span>
           <h2 id="hNombre">${esc(s.nombre)}</h2>
-          ${s.fundador ? `<span class="sello">${I.estrella}${s.genero === "f" ? "Socia fundadora" : "Socio fundador"}</span>` : ""}
-          <span class="h-meta">${s.socioN ? `${s.genero === "f" ? "Socia" : "Socio"} N.º ${String(s.socioN).padStart(4, "0")} · ` : ""}${plural(n, "empresa", "empresas")}</span>
+          ${s.fundador ? `<span class="hs-rol"><b>${I.estrella}${f ? "Socia fundadora" : "Socio fundador"}</b></span>` : ""}
+          <span class="hs-rol">${plural(n, "empresa", "empresas")}</span>
+        </div>
+        ${s.empresas.map((e, i) => extraHTML(e, i === 0)).join("")}
+      </aside>
+      <div class="hs-main">
+        ${sola ? "" : `<div class="h-tabs${n > 2 ? " muchas" : ""}" role="tablist" aria-label="Empresas de ${esc(s.nombre)}">${s.empresas.map((e, i) => `
+          <button type="button" class="tab" role="tab" data-tab="${e.id}" aria-controls="panel-${e.id}" aria-selected="${i === 0}"><span class="lg${claseLogo(e)}" style="background:${e.logoFondo}">${logoChico(e)}</span><span>${esc(e.nombre)}</span></button>`).join("")}</div>`}
+        <div class="h-lista${sola ? " hs-sola" : ""}">
+          ${s.empresas.map((e, i) => empresaHTML(e, i === 0, s)).join("")}
         </div>
       </div>
     </div>
-    <div class="h-titulo"><b>${sola ? "Su empresa" : "Sus empresas"}</b>${sola ? "" : `<span>Tocá para cambiar</span>`}</div>
-    ${sola ? "" : `<div class="h-tabs${n > 2 ? " muchas" : ""}" role="tablist" aria-label="Empresas de ${esc(s.nombre)}">${s.empresas.map((e, i) => `
-      <button type="button" class="tab" role="tab" data-tab="${e.id}" aria-controls="panel-${e.id}" aria-selected="${i === 0}"><span class="lg${claseLogo(e)}" style="background:${e.logoFondo}">${logoChico(e)}</span><span>${esc(e.nombre)}</span></button>`).join("")}</div>`}
-    <div class="h-lista">
-      ${s.empresas.map((e, i) => empresaHTML(e, i === 0, s)).join("")}
-    </div>
-    <div class="h-volver"><button type="button" class="btn btn-linea btn-full" data-cerrar>Volver a la lista<span class="circ">${I.x}</span></button></div>`;
+  </div>
+  <div class="h-volver"><button type="button" class="btn btn-linea btn-full" data-cerrar>Volver a la lista<span class="circ">${I.x}</span></button></div>`;
 }
 /* Cambia de empresa dentro de la ficha */
 function activar(id){
   hScroll.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === id));
   hScroll.querySelectorAll(".emp").forEach(x => { x.hidden = x.dataset.emp !== id; });
+  hScroll.querySelectorAll("[data-extra]").forEach(x => { x.hidden = x.dataset.extra !== id; });
   barra(empresaPorId(id)[1]);
   const tabs = hScroll.querySelector(".h-tabs");
   if(tabs){
-    const tope = tabs.previousElementSibling.offsetTop;
+    const tope = tabs.offsetTop - 8;
     if(hScroll.scrollTop > tope) hScroll.scrollTo({top: tope, behavior: "auto"});
     hScroll.querySelector(`.tab[data-tab="${id}"]`).scrollIntoView({block: "nearest", inline: "center", behavior: sinMov ? "auto" : "smooth"});
   }
@@ -786,7 +948,7 @@ function activar(id){
 function mostrar(id){
   const s = socioPorId(id); if(!s) return;
   if(hoja.hidden) focoPrevio = document.activeElement;
-  hScroll.innerHTML = hojaHTML(s); hScroll.scrollTop = 0;
+  hScroll.innerHTML = hojaHTML(s); hScroll.scrollTop = 0; hoja.classList.add("es-socio");
   barra(s.empresas[0]);
   if(empIr && s.empresas.some(e => e.id === empIr)) activar(empIr);
   empIr = null;
@@ -802,6 +964,7 @@ function presentar(){
 const esRuta = id => id === "asociarme" || !!socioPorId(id);
 function mostrarAsociarme(){
   if(hoja.hidden) focoPrevio = document.activeElement;
+  hoja.classList.remove("es-socio");
   const msj = encodeURIComponent("Hola, quiero asociarme a la Cooperativa Cimientos.");
   hScroll.innerHTML = `
     <div class="h-cab a-cab">
@@ -858,8 +1021,17 @@ velo.addEventListener("click", cerrar);
 addEventListener("keydown", e => { if(e.key !== "Escape") return; if(!visor.hidden) cerrarVisor(); else if(!hoja.hidden) cerrar(); });
 /* Foto ampliada: se cierra tocando en cualquier lado, con "Cerrar" o con el botón atrás */
 const visor = document.getElementById("visor"), visorImg = document.getElementById("visorImg");
-function abrirVisor(src, alt){
-  visorImg.src = src; visorImg.alt = alt || ""; visor.hidden = false;
+let vLista = [], vI = 0;
+const visorNav = document.getElementById("visorNav"), visorCuenta = document.getElementById("visorCuenta");
+function verFoto(i){
+  vI = (i + vLista.length) % vLista.length; visorImg.src = vLista[vI];
+  visorCuenta.textContent = `${vI + 1} de ${vLista.length}`;
+}
+function abrirVisor(src, alt, lista, i){
+  vLista = lista && lista.length ? lista : [src];
+  visorImg.alt = alt || ""; verFoto(lista ? i : 0);
+  visorNav.hidden = vLista.length < 2; visor.classList.toggle("con-nav", vLista.length > 1);
+  visor.hidden = false;
   requestAnimationFrame(() => visor.classList.add("on"));
   history.pushState({visor:true}, "");
   document.getElementById("visorCerrar").focus({preventScroll:true});
@@ -867,10 +1039,14 @@ function abrirVisor(src, alt){
 function ocultarVisor(){ if(visor.hidden) return; visor.classList.remove("on"); visor.hidden = true; }
 function cerrarVisor(){ if(!visor.hidden) history.back(); }
 addEventListener("popstate", ocultarVisor);
-visor.addEventListener("click", cerrarVisor);
+visor.addEventListener("click", e => { const b = e.target.closest("[data-vnav]"); if(b) return verFoto(vI + +b.dataset.vnav); cerrarVisor(); });
+addEventListener("keydown", e => { if(visor.hidden || vLista.length < 2) return; if(e.key === "ArrowRight") verFoto(vI + 1); if(e.key === "ArrowLeft") verFoto(vI - 1); });
+(() => { let x0 = null; visor.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, {passive:true});
+  visor.addEventListener("touchend", e => { if(x0 === null || vLista.length < 2) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if(Math.abs(dx) > 50){ e.preventDefault(); verFoto(vI + (dx < 0 ? 1 : -1)); } }); })();
 hScroll.addEventListener("click", e => {
   if(e.target.closest("[data-cerrar]")) return cerrar();
-  const f = e.target.closest("[data-foto]"); if(f) return abrirVisor(f.dataset.foto, f.querySelector("img").alt);
+  const f = e.target.closest("[data-foto]");
+  if(f){ const emp = f.dataset.fotos && empresaPorId(f.dataset.fotos)[1]; return abrirVisor(f.dataset.foto, f.querySelector("img")?.alt, emp ? emp.fotos : null, +f.dataset.i || 0); }
   const b = e.target.closest("[data-tab]"); if(b) return activar(b.dataset.tab);
   const ir = e.target.closest("[data-ir]"); if(ir){ empIr = ir.dataset.empIr; return location.replace("#" + ir.dataset.ir); }
   const c = e.target.closest("[data-copiar]"); if(!c) return;
@@ -916,6 +1092,12 @@ document.addEventListener("click", e => {
   const a = e.target.closest('[data-sec], a[href="#socios"], a[href="#fundadores"]'); if(!a) return;
   // Desde la portada o el menú se baja hasta las pestañas; al tocar una pestaña se queda donde está
   e.preventDefault(); verSeccion(a.dataset.sec || a.getAttribute("href").slice(1), !a.dataset.sec);
+});
+document.addEventListener("click", e => {
+  if(!e.target.closest("[data-ir-buscar]")) return;
+  e.preventDefault(); verSeccion("socios", false);
+  document.querySelector(".cabeza").scrollIntoView({behavior: sinMov ? "auto" : "smooth", block: "start"});
+  setTimeout(() => buscar.focus({preventScroll:true}), 500);
 });
 /* Siempre arranca en "Socios y empresas", aunque la dirección traiga #fundadores de una visita anterior */
 if(location.hash === "#fundadores" || location.hash === "#socios") history.replaceState(null, "", location.pathname + location.search);
