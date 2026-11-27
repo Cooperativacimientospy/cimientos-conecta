@@ -357,15 +357,39 @@ button{font:inherit;color:inherit}
 .ver-emp:hover{transform:translateY(-2px)}
 .ver-emp:hover .circ{transform:scale(1.1)}
 
-/* ---------- Sumate ---------- */
-.sumate{padding-block:clamp(60px,9vw,108px)}
-.sumate .caja{display:grid;gap:22px;justify-items:start}
-.sumate h2{font-size:clamp(38px,8.5vw,72px)}
-.sumate h2 .grueso{color:var(--bosque)}
-.sumate p{color:var(--gris);font-size:18px;max-width:44ch;font-weight:500}
-.sumate .sum-num{font-size:15.5px;margin-top:-8px}.sumate .sum-num b{color:var(--tinta);font-weight:850;font-variant-numeric:tabular-nums}
-@media (max-width:520px){.sumate .lado{display:grid;gap:14px}.sumate .lado .btn{width:100%;justify-content:space-between}}
-@media (min-width:860px){.sumate .caja{grid-template-columns:1.3fr 1fr;align-items:end}.sumate .lado{display:grid;gap:22px;justify-items:start}}
+/* ---------- Sumate (rediseño 27/11): cajón verde como la portada, con los 3 pasos y el costo a la vista ---------- */
+.sumate{padding-block:clamp(56px,8vw,100px)}
+.s-caja{position:relative;overflow:hidden;isolation:isolate;background:#10341D;color:#fff;border-radius:clamp(26px,4vw,40px);padding:clamp(26px,5vw,56px);display:grid;gap:22px}
+.s-caja .deco{position:absolute;z-index:-1;right:-70px;top:-70px;width:250px;height:250px;display:grid;grid-template-columns:1fr 1fr;gap:12px;opacity:.09;transform:rotate(-12deg)}
+.s-caja .deco i{border-radius:34px;background:#fff}
+.s-caja .eyebrow{color:#D9E8D5}
+.s-caja .eyebrow::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='46' height='46' rx='13' fill='%23fff'/%3E%3Crect x='54' width='46' height='46' rx='13' fill='%23A6D22E'/%3E%3Crect y='54' width='46' height='46' rx='13' fill='%23F56000'/%3E%3Crect x='54' y='54' width='46' height='46' rx='13' fill='%23fff' fill-opacity='.5'/%3E%3C/svg%3E")}
+.s-caja h2{font-size:clamp(36px,8.6vw,64px);font-weight:850;color:#fff;line-height:1}
+.s-caja h2 .verde{color:var(--brote-l)}
+.s-caja .bajada{font-size:clamp(16px,4.2vw,19px);color:#E6EFE3;max-width:42ch;font-weight:500;line-height:1.45}
+.s-pasos{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.s-pasos li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;padding:12px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.s-pasos b{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:19px;font-weight:900;background:#fff;color:var(--bosque)}
+.s-pasos li:nth-child(2) b{background:var(--brote-l);color:var(--bosque-d)}
+.s-pasos li:nth-child(3) b{background:var(--impulso);color:#fff}
+.s-pasos strong{display:block;font-size:16px;font-weight:850;line-height:1.2}
+.s-pasos small{display:block;margin-top:2px;font-size:13.5px;font-weight:600;color:#C9D8C6;line-height:1.3}
+.s-costo{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:14px 18px;border-radius:20px;border:1.5px dashed rgba(166,210,46,.55);color:#E6EFE3}
+.s-costo strong{color:var(--brote-l)}
+.s-costo strong{font-size:clamp(22px,5.6vw,28px);font-weight:900;letter-spacing:-.02em}
+.s-costo span{font-size:14.5px;font-weight:700}
+.s-btns{display:grid;gap:10px}
+.s-btns .btn{width:100%;justify-content:space-between}
+.btn-wa-linea{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+.btn-wa-linea .circ{background:#15924F;color:#fff}
+.btn-wa-linea:hover{background:rgba(255,255,255,.08)}
+.s-tel{font-size:14px;font-weight:650;color:#C9D8C6}.s-tel b{color:#fff;font-weight:850}
+@media (min-width:860px){
+  .s-caja{grid-template-columns:1.05fr 1fr;column-gap:56px;align-items:start}
+  .s-caja .izq{display:grid;gap:22px;align-content:start}
+  .s-caja .der{display:grid;gap:14px}
+  .s-btns{grid-template-columns:1fr 1fr}
+}
 footer{border-top:1px solid var(--linea)}
 footer .wrap{padding-block:30px 44px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;color:var(--gris);font-size:14px;font-weight:650}
 footer img{height:46px;width:auto}
@@ -666,13 +690,27 @@ span.hs-foto{cursor:default}
   </section>
 
   <section class="sumate" id="sumate" aria-labelledby="t-sum">
-    <div class="wrap caja">
-      <h2 id="t-sum" class="rv"><span class="fino">¿Querés ser</span><br><span class="grueso">parte de Cimientos<span class="punto">?</span></span></h2>
-      <div class="lado rv" style="--d:.12s">
-        <p>Mirá el video de cómo asociarte y completá tu solicitud desde el celular, en pocos minutos.</p>
-        <a class="btn btn-impulso" href="#asociarme" data-asociarme>Quiero ser socio<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        <a class="btn btn-wa" href="https://wa.me/595974635630?text=Hola%2C%20quiero%20asociarme%20a%20la%20Cooperativa%20Cimientos." target="_blank" rel="noopener">Escribir por WhatsApp<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        <p class="sum-num">WhatsApp de la cooperativa: <b>0974 635 630</b></p>
+    <div class="wrap">
+      <div class="s-caja rv">
+        <div class="deco" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="izq">
+          <span class="eyebrow">Sumate a la cooperativa</span>
+          <h2 id="t-sum">¿Querés ser parte<br><span class="verde">de Cimientos?</span></h2>
+          <p class="bajada">Son tres pasos y lo hacés todo desde el celular. Mirá el video y completá tu solicitud en pocos minutos.</p>
+        </div>
+        <div class="der">
+          <ol class="s-pasos">
+            <li><b>1</b><span><strong>Completá el formulario</strong><small>Desde el celular, en unos minutos.</small></span></li>
+            <li><b>2</b><span><strong>Pagá la tasa de admisión</strong><small>Gs. 150.000, una sola vez.</small></span></li>
+            <li><b>3</b><span><strong>El Consejo te responde</strong><small>En 48 a 72 horas hábiles.</small></span></li>
+          </ol>
+          <div class="s-costo"><strong>Gs. 200.000</strong><span>para empezar · después Gs. 50.000 por mes</span></div>
+          <div class="s-btns">
+            <a class="btn btn-explorar" href="#asociarme" data-asociarme>Quiero ser socio<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+            <a class="btn btn-wa-linea" href="https://wa.me/595974635630?text=Hola%2C%20quiero%20asociarme%20a%20la%20Cooperativa%20Cimientos." target="_blank" rel="noopener">Escribir por WhatsApp<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          </div>
+          <p class="s-tel">WhatsApp de la cooperativa: <b>0974 635 630</b></p>
+        </div>
       </div>
     </div>
   </section>
