@@ -209,13 +209,28 @@ button{font:inherit;color:inherit}
 .pill[aria-pressed="true"]{background:var(--brote);border-color:var(--brote);color:#fff}
 .pill[aria-pressed="true"] svg,.pill[aria-pressed="true"] small{color:#fff}
 .pill.mas svg{color:var(--brote)}
-/* Celular: cuadrícula pareja de 2 columnas (antes quedaban píldoras de anchos distintos, desordenadas) */
+/* Celular: tarjetas de 2 columnas con ícono en baldosa de color, nombre y cantidad (sin cortar palabras) */
+.pill .ib{display:none}
+.pill .tx{display:contents}
+.pill .tx small{display:none}
 @media (max-width:600px){
   .pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .pill{height:auto;min-height:50px;padding:8px 12px;border-radius:16px;white-space:normal;line-height:1.2;text-align:left;font-size:14px}
-  .pill span{min-width:0;overflow-wrap:break-word;hyphens:auto}
-  .pill.todas,.pill.mas{justify-content:center;text-align:center}
-  .pill.mas{grid-column:1 / -1;min-height:46px}
+  .pill{height:auto;min-height:62px;padding:9px 9px 9px 8px;gap:9px;border-radius:18px;white-space:normal;text-align:left;font-size:14px;line-height:1.18;box-shadow:0 6px 16px -14px rgba(14,26,18,.5)}
+  .pill>svg{display:none}
+  .pill .ib{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:var(--fc,var(--bosque-xl));color:var(--fi,var(--bosque))}
+  .pill .ib svg{width:21px;height:21px;color:inherit}
+  .pill .tx{display:grid;gap:1px;min-width:0}
+  .pill .tx b{font-weight:800;hyphens:manual;overflow-wrap:break-word;min-width:0}
+  .pill.largo .tx b{font-size:12.5px;letter-spacing:-.025em}
+  .pill.largo .ib{width:30px;height:30px;border-radius:10px}
+  .pill.largo{gap:7px}
+  .pill .tx small{display:block;font-size:12px;font-weight:650;color:var(--tenue)}
+  .pill[aria-pressed="true"]{background:var(--bosque);border-color:var(--bosque)}
+  .pill[aria-pressed="true"] .ib{background:rgba(255,255,255,.14);color:var(--brote-l)}
+  .pill[aria-pressed="true"] .tx small{color:rgba(255,255,255,.75)}
+  .pill.mas{grid-column:1 / -1;justify-content:center;min-height:44px;border:0;background:none;box-shadow:none;color:var(--bosque);font-weight:850;text-decoration:underline;text-decoration-color:rgba(28,70,41,.3);text-underline-offset:4px}
+  .pill.mas>svg{display:block}
+}
 }
 /* Categorías: todas a la vista, con cuántas empresas tiene cada una */
 .cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px}
@@ -258,7 +273,8 @@ button{font:inherit;color:inherit}
   box-shadow:0 24px 40px -32px rgba(14,26,18,.9);transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
 .socio>img{display:block;flex:none;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 12%;transition:transform 1.4s var(--ease)}
 .socio::after{content:"";position:absolute;inset:0 0 auto 0;height:84px;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,14,9,.32),rgba(6,14,9,0))}
-.socio:hover{transform:translateY(-6px);box-shadow:0 34px 50px -32px rgba(14,26,18,.95)}
+.socio.sin-emp{cursor:default}
+.socio:not(.sin-emp):hover{transform:translateY(-6px);box-shadow:0 34px 50px -32px rgba(14,26,18,.95)}
 .socio:hover>img{transform:scale(1.06)}
 .s-ini{flex:none;width:100%;aspect-ratio:1/1;padding-bottom:40px;display:grid;place-items:center;line-height:1;font-size:clamp(46px,7vw,76px);font-weight:300;letter-spacing:-.03em;color:rgba(255,255,255,.55);background:var(--bosque)}
 /* Socio sin foto: su logo como portada, en una baldosa sobre Bosque con el mosaico de marca */
@@ -780,9 +796,11 @@ function pintarFiltros(){
   let ver = catsAbiertas ? rubros : rubros.slice(0, VISIBLES);
   if(rubro !== "Todas" && !ver.includes(rubro)) ver = [...ver, rubro];
   const resto = rubros.length - ver.length;
-  filtros.innerHTML = `<button type="button" class="pill todas" aria-pressed="${rubro === "Todas"}" data-r="Todas">Todas</button>` +
-    ver.map(r => `<button type="button" class="pill" aria-pressed="${r === rubro}" data-r="${esc(r)}" title="${plural(LISTA_EMP.filter(e => e.categoria === r).length, "empresa", "empresas")}">${iconoCat(r)}<span>${esc(r)}</span></button>`).join("") +
-    (rubros.length > VISIBLES ? `<button type="button" class="pill mas" data-mas>${catsAbiertas ? ic('<path d="M5 12h14"/>') + "Ver menos" : ic('<path d="M12 5v14M5 12h14"/>') + `Ver ${resto} más`}</button>` : "");
+  const TINTES = [["var(--bosque-xl)", "var(--bosque)"], ["var(--brote-xl)", "#4F7500"], ["var(--impulso-xl)", "var(--impulso-d)"], ["#ECECEA", "var(--acero)"]];
+  const tarjeta = (r, i, icono, n) => `<button type="button" class="pill${r === "Todas" ? " todas" : ""}${r.split(/\s+/).some(w => w.length > 13) ? " largo" : ""}" aria-pressed="${r === rubro}" data-r="${esc(r)}" style="--fc:${TINTES[i % 4][0]};--fi:${TINTES[i % 4][1]}">${r === "Todas" ? "" : icono}<span class="ib">${icono}</span><span class="tx"><b>${esc(r)}</b><small>${plural(n, "empresa", "empresas")}</small></span></button>`;
+  filtros.innerHTML = tarjeta("Todas", 0, I.estrellaClara, LISTA_EMP.length) +
+    ver.map((r, i) => tarjeta(r, i + 1, iconoCat(r), LISTA_EMP.filter(e => e.categoria === r).length)).join("") +
+    (rubros.length > VISIBLES ? `<button type="button" class="pill mas" data-mas>${catsAbiertas ? ic('<path d="m6 15 6-6 6 6"/>') + "Ver menos categorías" : ic('<path d="m6 9 6 6 6-6"/>') + `Ver ${resto} categorías más`}</button>` : "");
 }
 function pintarSocios(){
   const palabras = norm(buscar.value).split(/\s+/).filter(Boolean), q = palabras.length;
@@ -805,7 +823,15 @@ function pintarSocios(){
   grilla.className = "grilla";
   const lista = ORDEN.filter(s => (rubro === "Todas" || s.empresas.some(e => e.categoria === rubro)) &&
     palabras.every(p => TEXTO.get(s.id).includes(p)));
-  let h = lista.map((s, i) => `
+  let h = lista.map((s, i) => !s.empresas.length ? `
+    <div class="socio sin-emp rv" style="--d:${(i % 4) * .07}s">
+      ${s.portada ? `<img src="${s.portada}" alt="Foto de ${esc(s.nombre)}" loading="lazy">` : `<span class="s-ini" aria-hidden="true">${ini(...s.nombre.split(" "))}</span>`}
+      ${s.fundador ? `<span class="s-sello vidrio">${I.estrella}${s.genero === "f" ? "Fundadora" : "Fundador"}</span>` : ""}
+      <span class="s-pie">
+        ${s.socioN ? `<span class="s-num">${s.genero === "f" ? "Socia" : "Socio"} N.º ${String(s.socioN).padStart(4, "0")}</span>` : ""}
+        <h3>${esc(s.nombre)}</h3>
+      </span>
+    </div>` : `
     <button type="button" class="socio rv" style="--d:${(i % 4) * .07}s" data-socio="${s.id}" aria-label="Ver las empresas de ${esc(s.nombre)}">
       ${s.portada ? `<img src="${s.portada}" alt="" loading="lazy">` : s.empresas[0] && s.empresas[0].logo ? `<span class="s-logo ${SIN_FOTO}" aria-hidden="true"><span class="mos"><i></i><i></i><i></i><i></i></span><span class="baldosa" style="background:${s.empresas[0].logoFondo}">${logoChico(s.empresas[0])}</span></span>` : `<span class="s-ini" aria-hidden="true">${ini(...s.nombre.split(" "))}</span>`}
       ${s.fundador ? `<span class="s-sello vidrio">${I.estrella}${s.genero === "f" ? "Fundadora" : "Fundador"}</span>` : ""}
@@ -855,7 +881,7 @@ listaFund.innerHTML = FUNDADORES.map(([n, nom, ape, sid, fotoSola], i) => {
     <span class="num" aria-label="Socio número ${n}">${String(n).padStart(2, "0")}</span>
     <span class="fot${foto ? " con" : ""}" aria-hidden="true">${foto ? `<img src="${foto}" alt="" loading="lazy">` : ini(nom, ape)}</span>
     <span><span class="nom">${esc(nom)}</span><span class="ape">${esc(ape)}</span></span>
-    ${s ? `<button type="button" class="ver-emp" data-socio="${s.id}">${s.empresas.length > 1 ? "Ver empresas" : "Ver empresa"}<span class="circ">${I.flecha}</span></button>` : ""}
+    ${s && s.empresas.length ? `<button type="button" class="ver-emp" data-socio="${s.id}">${s.empresas.length > 1 ? "Ver empresas" : "Ver empresa"}<span class="circ">${I.flecha}</span></button>` : ""}
   </li>`; }).join("");
 listaFund.addEventListener("click", e => { const b = e.target.closest("[data-socio]"); if(b) abrir(b.dataset.socio); });
 
