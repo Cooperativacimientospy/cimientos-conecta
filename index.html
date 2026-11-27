@@ -95,22 +95,20 @@ button{font:inherit;color:inherit}
 .aviso b{color:#fff;font-weight:850}
 .aviso i{font-style:normal;color:var(--brote-l)}
 @media (max-width:560px){.aviso .lugar{display:none}}
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(16,52,29,.94);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
-.top.con-borde{border-bottom-color:rgba(255,255,255,.08);box-shadow:0 10px 24px -18px rgba(0,0,0,.6)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(244,245,241,.82);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border-bottom:1px solid transparent;transition:border-color .3s}
+.top.con-borde{border-bottom-color:var(--linea)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:12px}
 .top img{height:38px;width:auto}
 .top nav{display:flex;align-items:center;gap:4px}
-.top nav a.nl{display:inline-flex;align-items:center;gap:7px;font-weight:750;font-size:15px;padding:9px 14px;border-radius:999px;color:#E6EFE3;transition:background .3s,color .3s}
+.top nav a.nl{display:inline-flex;align-items:center;gap:7px;font-weight:750;font-size:15px;padding:9px 14px;border-radius:999px;color:var(--texto);transition:background .3s,color .3s}
 .top nav a.nl svg{width:17px;height:17px}
-.top nav a.nl:hover{background:rgba(255,255,255,.12);color:#fff}
-.top .btn-sumate{background:var(--brote-l);color:var(--bosque-d)}
-.top .btn-sumate .circ{background:var(--bosque-d);color:#fff}
+.top nav a.nl:hover{background:var(--blanco);color:var(--bosque)}
 @media (max-width:720px){.top nav a.nl{display:none}.top img{height:32px}}
 
 /* ---------- Portada con la línea gráfica (arcos e íconos del backpodium) ---------- */
-.portada{margin:0;border-radius:0 0 clamp(26px,4vw,40px) clamp(26px,4vw,40px);overflow:hidden;position:relative;isolation:isolate;background:#10341D}
-.grafica{position:absolute;z-index:-1;right:0;top:0;bottom:0;width:min(40%,460px);pointer-events:none;animation:dibuja 1.8s var(--ease) .25s both}
-.grafica img{width:100%;height:100%;max-width:none;object-fit:contain;object-position:right center;padding:18px 0}
+.portada{margin:6px max(10px,env(safe-area-inset-right,0px)) 0 max(10px,env(safe-area-inset-left,0px));border-radius:clamp(26px,4vw,40px);overflow:hidden;position:relative;isolation:isolate;background:#10341D}
+.grafica{position:absolute;z-index:-1;right:0;top:0;bottom:0;width:min(44%,520px);pointer-events:none;animation:dibuja 1.8s var(--ease) .25s both}
+.grafica img{width:100%;height:100%;max-width:none;object-fit:contain;object-position:right center;padding:28px 28px 28px 0}
 @keyframes dibuja{from{clip-path:inset(100% 0 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
 .portada .wrap{position:relative;display:grid;justify-items:start;text-align:left;gap:16px;padding-block:clamp(22px,4.5vw,64px) clamp(28px,4.5vw,64px)}
 .portada .wrap>*{max-width:min(100%,600px)}
@@ -132,9 +130,15 @@ button{font:inherit;color:inherit}
 .portada .lead{font-size:clamp(16px,4.2vw,20px);line-height:1.4;color:#E6EFE3;max-width:34ch;font-weight:500}
 .portada .ctas{display:flex;flex-wrap:wrap;gap:12px}
 @media (max-width:859px){
-  .grafica{top:66px;right:0;width:45%}
-  .grafica img{padding:0 0 12px;object-position:right bottom}
-  .portada .lead{max-width:63%}
+  /* Celular: título arriba, texto a la izquierda y pictograma a la derecha; el botón va abajo, a todo el ancho */
+  .grafica{top:84px;right:14px;bottom:auto;width:44%;aspect-ratio:607.6/785.5;height:auto}
+  .grafica img{padding:0;object-position:right top}
+  .portada .wrap{min-height:calc(44vw * 1.293 + 84px + 84px);grid-template-rows:auto auto auto 1fr;padding-bottom:22px}
+  .portada .lead{max-width:52%}
+  .datos{flex-direction:column;align-items:flex-start;gap:8px}
+  .datos i{display:none}
+  .portada .ctas{align-self:end;width:100%}
+  .portada .ctas .btn{width:100%;justify-content:space-between}
 }
 @media (max-width:420px){.portada .lead{font-size:15.5px}.datos{gap:10px;font-size:14px}}
 .pasos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;list-style:none;margin-block:0;padding-top:22px;padding-bottom:0;font-size:15px;font-weight:750;color:var(--texto)}
@@ -559,18 +563,18 @@ span.hs-foto{cursor:default}
 
 <header class="top" id="top">
   <div class="wrap">
-    <a href="#inicio" aria-label="Inicio"><img src="img/logo-icon-cimientos.svg" alt="Cooperativa Cimientos Ltda."></a>
+    <a href="#inicio" aria-label="Inicio"><img src="img/logo-cimientos.svg" alt="Cooperativa Cimientos Ltda."></a>
     <nav aria-label="Secciones">
       <a class="nl" href="#buscar" data-ir-buscar><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Buscar</a>
       <a class="nl" href="#fundadores">Fundadores</a>
-      <a class="btn btn-sumate btn-chico" href="#asociarme" data-asociarme>Sumate<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="btn btn-bosque btn-chico" href="#asociarme" data-asociarme>Sumate<span class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </nav>
   </div>
 </header>
 
 <main id="inicio">
   <section class="portada" aria-label="Portada">
-    <div class="grafica" aria-hidden="true"><img src="img/arcos-e-iconos-portada.svg" alt=""></div>
+    <div class="grafica" aria-hidden="true"><img src="img/pictograma-portada.svg" alt=""></div>
     <div class="wrap">
       <h1><span class="linea"><span style="--d:.1s">Cimientos <span class="verde">conecta</span></span></span></h1>
       <p class="lead rv" style="--d:.25s">Directorio de empresas y servicios de nuestra comunidad cooperativa.</p>
