@@ -110,7 +110,7 @@ button{font:inherit;color:inherit}
 /* ---------- Portada con la línea gráfica (arcos e íconos del backpodium) ---------- */
 .portada{margin:0;border-radius:0 0 clamp(26px,4vw,40px) clamp(26px,4vw,40px);overflow:hidden;position:relative;isolation:isolate;background:#10341D}
 .grafica{position:absolute;z-index:-1;right:0;top:0;bottom:0;width:min(40%,460px);pointer-events:none;animation:dibuja 1.8s var(--ease) .25s both}
-.grafica img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:right top}
+.grafica img{width:100%;height:100%;max-width:none;object-fit:contain;object-position:right center;padding:18px 0}
 @keyframes dibuja{from{clip-path:inset(100% 0 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
 .portada .wrap{position:relative;display:grid;justify-items:start;text-align:left;gap:16px;padding-block:clamp(22px,4.5vw,64px) clamp(28px,4.5vw,64px)}
 .portada .wrap>*{max-width:min(100%,600px)}
@@ -132,11 +132,11 @@ button{font:inherit;color:inherit}
 .portada .lead{font-size:clamp(16px,4.2vw,20px);line-height:1.4;color:#E6EFE3;max-width:34ch;font-weight:500}
 .portada .ctas{display:flex;flex-wrap:wrap;gap:12px}
 @media (max-width:859px){
-  .grafica{width:42%;opacity:.95}
-  .grafica img{object-position:right center}
-  .portada .lead,.portada .datos{max-width:66%}
+  .grafica{top:66px;right:0;width:45%}
+  .grafica img{padding:0 0 12px;object-position:right bottom}
+  .portada .lead{max-width:63%}
 }
-@media (max-width:420px){.portada .lead{max-width:72%;font-size:15.5px}.datos{gap:10px;font-size:14px}}
+@media (max-width:420px){.portada .lead{font-size:15.5px}.datos{gap:10px;font-size:14px}}
 .pasos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;list-style:none;margin-block:0;padding-top:22px;padding-bottom:0;font-size:15px;font-weight:750;color:var(--texto)}
 .pasos li{display:flex;align-items:center;gap:9px}
 .pasos b{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13.5px;font-weight:900;background:var(--bosque);color:#fff}
@@ -570,7 +570,7 @@ span.hs-foto{cursor:default}
 
 <main id="inicio">
   <section class="portada" aria-label="Portada">
-    <div class="grafica" aria-hidden="true"><img src="img/arcos-e-iconos.svg" alt=""></div>
+    <div class="grafica" aria-hidden="true"><img src="img/arcos-e-iconos-portada.svg" alt=""></div>
     <div class="wrap">
       <h1><span class="linea"><span style="--d:.1s">Cimientos <span class="verde">conecta</span></span></span></h1>
       <p class="lead rv" style="--d:.25s">Directorio de empresas y servicios de nuestra comunidad cooperativa.</p>
@@ -736,19 +736,21 @@ const TEXTO_EMP = new Map(LISTA_EMP.map(e => [e.id, norm([e.nombre, e.categoria,
 /* Ícono de cada categoría: se elige solo según las palabras del nombre (las categorías se crean en el panel) */
 const ic = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 const ICONOS_CAT = [
-  [/constru|obra|inmueb|arquitec/, ic('<path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3"/><path d="M10 9V6h4v3"/>')],
+  [/constru|obra|inmueb|arquitec/, ic('<path d="M2.5 18.5h19"/><path d="M4.5 18.5v-2.5a7.5 7.5 0 0 1 15 0v2.5"/><path d="M10 9V5.5a2 2 0 0 1 4 0V9"/><path d="M7.5 10.5 8.5 15M16.5 10.5 15.5 15"/>')],
   [/ferreter|herramient/, ic('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5Z"/>')],
   [/marketing|dise|publici|marca/, ic('<path d="M12 19l7-7 3 3-7 7-3-3Z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5Z"/><circle cx="11" cy="11" r="2"/>')],
   [/tienda|producto|comercio|venta/, ic('<path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/>')],
   [/embalaj|logist|transport|flete/, ic('<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>')],
   [/automatiz|industr|maquin/, ic('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>')],
   [/tecnolog|electro|inform|celular/, ic('<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>')],
-  [/residu|recicl|ambient|ecolog/, ic('<path d="M5 19c9 0 14-6 14-15-9 0-14 5-14 13v2Z"/><path d="M5 19c2-4 5-7 9-9"/>')],
+  [/residu|recicl|ambient|ecolog/, '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 3.5c-9.5 0-15 4.6-15 12.2 0 1 .1 1.9.4 2.8L3.2 20.8l1.4 1.4 2.3-2.3c.9.3 1.9.4 3 .4C17.4 20.3 20 13.6 20 3.5Z"/><path d="M7 18c2.5-4 5.5-7 9-9" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>'],
   [/agro|ganad|animal|granja|campo/, ic('<path d="M12 21V11"/><path d="M12 11c0-4 3-7 7-7 0 4-3 7-7 7ZM12 14c0-3-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5Z"/>')],
   [/segur|vigil|protec/, ic('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m9 12 2 2 4-4"/>')],
   [/salud|bienestar|medic|odont/, ic('<path d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.6 8.8 11 8.8 11s8.8-5.4 8.8-11Z"/>')],
   [/gastro|comida|restaur|aliment/, ic('<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2.5 1.5-4 4-4 8h4"/>')],
-  [/profesion|consult|asesor|jur|legal|contab|servic/, ic('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>')]
+  [/consult|asesor|profesion/, ic('<circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14c2.3.2 4 1.6 4.5 4.2"/>')],
+  [/servic/, ic('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>')],
+  [/jur|legal|contab/, ic('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>')]
 ];
 const ICONO_OTRO = ic('<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>');
 const iconoCat = c => (ICONOS_CAT.find(([re]) => re.test(norm(c))) || [0, ICONO_OTRO])[1];
