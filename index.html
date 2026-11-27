@@ -549,18 +549,34 @@ span.hs-foto{cursor:default}
 .ubic .circ{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--impulso-xl);color:var(--impulso-d)}
 .ubic svg{width:19px;height:19px}
 /* Página "Cómo asociarte" */
-.a-cab{padding:74px 22px 24px;background:#10341D}
+.a-cab{padding:74px 20px 24px;background:#10341D;border-radius:0 0 30px 30px}
 .a-cab::before{display:none}
 .a-cab .deco{position:absolute;z-index:-1;right:-60px;top:-60px;width:220px;height:220px;display:grid;grid-template-columns:1fr 1fr;gap:11px;opacity:.09;transform:rotate(-12deg)}
 .a-cab .deco i{border-radius:30px;background:#fff}
 .a-cab .eyebrow{color:#D9E8D5;margin-bottom:10px}
 .a-cab .eyebrow::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='46' height='46' rx='13' fill='%23fff'/%3E%3Crect x='54' width='46' height='46' rx='13' fill='%23A6D22E'/%3E%3Crect y='54' width='46' height='46' rx='13' fill='%23F56000'/%3E%3Crect x='54' y='54' width='46' height='46' rx='13' fill='%23fff' fill-opacity='.5'/%3E%3C/svg%3E")}
-.a-cab h2{font-size:clamp(36px,10vw,46px);font-weight:850;color:#fff;line-height:1}
+.a-cab h2{font-size:clamp(34px,9.4vw,46px);font-weight:850;color:#fff;line-height:1}
 .a-cab h2 .verde{color:var(--brote-l)}
 .a-cab p{margin-top:12px;font-size:16.5px;font-weight:500;color:#D6E4D3;max-width:32ch}
 .a-datos{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .a-datos span{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 13px 0 10px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);font-size:13.5px;font-weight:750;color:#fff}
 .a-datos svg{width:17px;height:17px;color:var(--brote-l)}
+/* Pasos unidos con conectores, dentro del encabezado verde (diseño que eligió Toby, 27/11) */
+.c-pasos{position:relative;list-style:none;margin:20px 0 0;padding:0;display:grid;gap:18px}
+.c-pasos::before{content:"";position:absolute;left:21px;top:26px;bottom:26px;width:2px;background:linear-gradient(180deg,#fff,var(--brote-l) 50%,var(--impulso));opacity:.6}
+.c-pasos li{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:center}
+.c-pasos b{position:relative;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:19px;font-weight:900;background:#fff;color:var(--bosque);box-shadow:0 0 0 5px #10341D}
+.c-pasos li:nth-child(2) b{background:var(--brote-l);color:var(--bosque-d)}
+.c-pasos li:nth-child(3) b{background:var(--impulso);color:#fff}
+.c-pasos strong{display:block;font-size:16.5px;font-weight:850;line-height:1.2;color:#fff}
+.c-pasos small{display:block;margin-top:2px;font-size:14px;font-weight:600;color:#C9D8C6;line-height:1.3}
+.a-cab .costos{margin-top:20px}
+.a-cab .c-btns{display:grid;gap:10px;margin-top:16px}
+.a-cab .c-btns .btn{width:100%;justify-content:space-between}
+.btn-wa-linea{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+.btn-wa-linea .circ{background:#15924F;color:#fff}
+.btn-wa-linea:hover{background:rgba(255,255,255,.08)}
+.a-cab .c-tel{margin-top:12px;font-size:14px;font-weight:650;color:#C9D8C6}.a-cab .c-tel b{color:#fff;font-weight:850}
 .a-video-caja{background:var(--blanco);border:1.5px solid var(--linea);border-radius:24px;padding:12px}
 .a-cuerpo{padding:0 16px}
 .a-video{display:block;width:auto;max-width:100%;max-height:min(56vh,480px);margin:0 auto;border-radius:16px;background:#10341D;aspect-ratio:9/16}
@@ -1037,26 +1053,31 @@ function mostrarAsociarme(){
       <span class="asa" aria-hidden="true"></span>
       <button type="button" class="cerrar vidrio" data-cerrar>${I.x}Cerrar</button>
       <span class="eyebrow">Sumate a la cooperativa</span>
-      <h2 id="hNombre">Cómo ser parte<br><span class="verde">de Cimientos</span></h2>
-      <p>Son tres pasos y lo hacés todo desde el celular.</p>
-      <div class="a-datos">
-        <span>${ic('<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 17.5h2"/>')}Desde el celular</span>
-        <span>${ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')}Respuesta en 48 a 72 h</span>
+      <h2 id="hNombre">¿Querés ser parte<br><span class="verde">de Cimientos?</span></h2>
+      <p>Son tres pasos y lo hacés todo desde el celular. Mirá el video y completá tu solicitud en pocos minutos.</p>
+      <ol class="c-pasos">
+        <li><b>1</b><span><strong>Completá el formulario</strong><small>Desde el celular, en unos minutos.</small></span></li>
+        <li><b>2</b><span><strong>Pagá la tasa de admisión</strong><small>Y mandanos el comprobante.</small></span></li>
+        <li><b>3</b><span><strong>El Consejo te responde</strong><small>En 48 a 72 horas hábiles.</small></span></li>
+      </ol>
+      <div class="costos">
+        <div class="costo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="19" cy="8" rx="8" ry="3.5"/><path d="M11 8v4c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5V8"/><path d="M11 12v4c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5v-4"/><ellipse cx="12" cy="19" rx="8" ry="3.5"/><path d="M4 19v4c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5v-4"/></svg><i></i><span><b>Gs. 150.000</b> de admisión, una sola vez.</span></div>
+        <div class="costo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="7" width="22" height="20" rx="4"/><path d="M5 13h22M11 4v6M21 4v6"/><path d="m12 20 3 3 5-6"/></svg><i></i><span><b>Después, Gs. 50.000</b> por mes.</span></div>
       </div>
+      <div class="c-btns">
+        <a class="btn btn-explorar" href="${FORM_URL}" target="_blank" rel="noopener">Completar el formulario<span class="circ">${I.flecha}${I.flecha}</span></a>
+        <a class="btn btn-wa-linea" href="https://wa.me/${WA_COOP}?text=${msj}" target="_blank" rel="noopener">Escribir por WhatsApp<span class="circ">${I.flecha}${I.flecha}</span></a>
+      </div>
+      <p class="c-tel">WhatsApp de la cooperativa: <b>${TEL_COOP}</b></p>
     </div>
     <div class="a-cuerpo">
-      <div class="e-titulo">Los pasos</div>
-      <ol class="a-pasos">
-        <li><b>1</b><div><h3>Completá el formulario</h3><p>Lo llenás desde el celular en unos minutos. Necesitás un socio que te proponga; si no conocés a ninguno, te asignamos uno.</p></div></li>
-        <li><b>2</b><div><h3>Pagá la tasa de admisión</h3><p>Son Gs. 150.000, una sola vez, para gastos administrativos. Después nos mandás el comprobante.</p></div></li>
-        <li><b>3</b><div><h3>El Consejo revisa tu solicitud</h3><p>Te respondemos en un plazo de 48 a 72 horas hábiles. Apenas te aceptan ya sos socio y hacés tu primer aporte de Gs. 50.000.</p></div></li>
-      </ol>
-      <div class="e-titulo">Cuánto cuesta</div>
-      <div class="costos claro">
-            <div class="costo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="19" cy="8" rx="8" ry="3.5"/><path d="M11 8v4c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5V8"/><path d="M11 12v4c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5v-4"/><ellipse cx="12" cy="19" rx="8" ry="3.5"/><path d="M4 19v4c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5v-4"/></svg><i></i><span><b>Gs. 150.000</b> de admisión, una sola vez.</span></div>
-            <div class="costo"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="7" width="22" height="20" rx="4"/><path d="M5 13h22M11 4v6M21 4v6"/><path d="m12 20 3 3 5-6"/></svg><i></i><span><b>Después, Gs. 50.000</b> por mes.</span></div>
-          </div>
-      <p class="a-guia" style="margin-top:10px">De los Gs. 50.000 por mes, Gs. 30.000 van a tu caja de aporte y Gs. 20.000 al Fondo de Solidaridad. El primer aporte lo hacés apenas te aceptan como socio.</p>
+      <div class="e-titulo">Bueno saber</div>
+      <ul class="svc">
+        <li>Necesitás un socio que te proponga. Si no conocés a ninguno, te asignamos uno.</li>
+        <li>La tasa de admisión es para gastos administrativos.</li>
+        <li>Apenas te aceptan ya sos socio y hacés tu primer aporte de Gs. 50.000.</li>
+      </ul>
+      <p class="a-guia" style="margin-top:12px">De los Gs. 50.000 por mes, Gs. 30.000 van a tu caja de aporte y Gs. 20.000 al Fondo de Solidaridad. El primer aporte lo hacés apenas te aceptan como socio.</p>
       ${VIDEO_ASOCIARSE ? `<div class="e-titulo">Mirá el video</div>
       <div class="a-video-caja"><video class="a-video" controls playsinline preload="none" poster="${VIDEO_POSTER}" src="${VIDEO_ASOCIARSE}"></video>
       <p class="desliza">Tocá el video para verlo. Dura menos de un minuto y explica todo el proceso.</p></div>` : ""}
